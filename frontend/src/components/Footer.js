@@ -1,9 +1,13 @@
 const Footer = (props) => {
     return (
         <footer>
-            <p>© Umbrella Corporation</p>
+            <p>{props.title}</p>
         </footer>
     );
 };
+
+Footer.defaultProps = {
+    title: "© Umbrella Corporation"
+}
 
 export default Footer;
