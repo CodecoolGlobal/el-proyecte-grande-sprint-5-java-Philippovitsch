@@ -14,7 +14,8 @@ export default function WeatherFetcher(location, setWeatherCards) {
                 location: location,
                 weatherCode: weatherData.weathercode,
                 temperature: weatherData.temperature + " °C",
-                windSpeed: weatherData.windspeed + " km/h"
+                windSpeed: weatherData.windspeed + " km/h",
+                windDirection: weatherData.winddirection,
             }])
         }
         fetchWeather()

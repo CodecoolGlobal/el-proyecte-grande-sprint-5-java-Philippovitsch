@@ -14,7 +14,7 @@ const WeatherCard = ({ weatherCard }) => {
             <h2 className="location" >{weatherCard.location}</h2>
             <p className="temperature" >{weatherCard.temperature}</p>
             <p>Wind: {weatherCard.windSpeed}</p>
-            <p>Wind direction: {weatherCard.winddirection}</p>
+            <p>Wind direction: {weatherCard.windDirection}</p>
             <img className="weather-icon" src={process.env.PUBLIC_URL+getWeatherIcon(weatherCard.weatherCode)} alt="weather icon" width="100"></img>
         </div>
     );
