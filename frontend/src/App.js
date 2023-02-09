@@ -14,8 +14,8 @@ function App() {
             id: 1,
             location: location,
             weatherCode: 0,
-            temperature: "10°C",
-            windSpeed: "5km/h",
+            temperature: "",
+            windSpeed: "",
         }
     ])
 
