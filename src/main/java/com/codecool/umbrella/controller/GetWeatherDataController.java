@@ -1,20 +1,11 @@
 package com.codecool.umbrella.controller;
 
-import com.google.gson.JsonArray;
+import com.codecool.umbrella.util.UrlReader;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
 
 @RestController
 public class GetWeatherDataController {
@@ -31,24 +22,13 @@ public class GetWeatherDataController {
                 , longitude
         );
 
-        String data = getData(WEATHER_API, params);
+        String data = UrlReader.getDataFromUrl(WEATHER_API, params);
         String convertedData = convertData(data);
         return convertedData;
     }
 
-    private String getData(String url, String params) {
-        try {
-            URLConnection connection = new URL(url + params).openConnection();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
-            String lines = reader.lines().collect(Collectors.joining("\n"));
-            reader.close();
-            return lines;
-        } catch (IOException error) {
-            throw new RuntimeException(error);
-        }
-    }
-
     private String convertData(String data) {
+        if (data == null || data.equals("")) return "[]";
         JsonElement results = JsonParser.parseString(data).getAsJsonObject().get("current_weather");
         return results.toString();
     }
