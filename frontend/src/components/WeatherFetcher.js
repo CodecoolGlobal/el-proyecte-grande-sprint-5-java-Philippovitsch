@@ -7,14 +7,14 @@ export default function WeatherFetcher(location, setWeatherCards) {
             const coordinatesData = await coordinatesRes.json()
             const latitude = coordinatesData[0].latitude
             const longitude = coordinatesData[0].longitude
-            const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`)
+            const weatherRes = await fetch(`/api/weather/current/${latitude},${longitude}`)
             const weatherData = await weatherRes.json()
             setWeatherCards([{
                 id: 1,
                 location: location,
-                weatherCode: weatherData.current_weather.weathercode,
-                temperature: weatherData.current_weather.temperature + " °C",
-                windSpeed: weatherData.current_weather.windspeed + " km/h"
+                weatherCode: weatherData.weathercode,
+                temperature: weatherData.temperature + " °C",
+                windSpeed: weatherData.windspeed + " km/h"
             }])
         }
         fetchWeather()
