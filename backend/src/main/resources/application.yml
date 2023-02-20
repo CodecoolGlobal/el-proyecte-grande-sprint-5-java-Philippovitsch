@@ -1,0 +1,3 @@
+api:
+  geocoding: "https://geocoding-api.open-meteo.com/v1/search"
+  weather: "https://api.open-meteo.com/v1/forecast"
