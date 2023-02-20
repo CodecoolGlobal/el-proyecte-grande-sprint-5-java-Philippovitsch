@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WeatherCards from "./components/WeatherCards";
-import fetchWeather from "./functions/fetch";
+import { fetchWeather } from "./functions/fetch";
 
 export default function App() {
   const location = "Vienna";
   const [weatherCards, setWeatherCards] = useState([]);
-  useEffect(async () => {
-    const cards = await fetchWeather(location);
-    setWeatherCards(cards);
+
+  useEffect(() => {
+    async function updateWeatherCards() {
+      const cards = await fetchWeather(location);
+      setWeatherCards(cards);
+    }
+    updateWeatherCards();
   }, [location]);
 
   return (

@@ -1,4 +1,4 @@
-async function fetchWeather(location) {
+export async function fetchWeather(location) {
   const coordinatesRes = await fetch(`/api/coordinates/${location}`);
   const coordinatesData = await coordinatesRes.json();
   const latitude = coordinatesData[0].latitude;
