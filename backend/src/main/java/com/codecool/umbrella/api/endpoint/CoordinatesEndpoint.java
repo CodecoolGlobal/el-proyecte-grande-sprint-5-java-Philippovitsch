@@ -5,6 +5,8 @@ import com.codecool.umbrella.logic.CoordinatesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/coordinates")
@@ -16,7 +18,7 @@ public class CoordinatesEndpoint {
     }
 
     @GetMapping("{name}")
-    public CoordinatesDTO getByName(@PathVariable String name) throws JsonProcessingException {
+    public List<CoordinatesDTO> getByName(@PathVariable String name) throws JsonProcessingException {
         return coordinatesService.getByName(name);
     }
 }

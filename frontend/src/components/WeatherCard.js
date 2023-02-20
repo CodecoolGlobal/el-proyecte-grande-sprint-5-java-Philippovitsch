@@ -1,8 +1,23 @@
 const BACKEND_URL = process.env.PUBLIC_URL;
-const WEATHER_ICONS = ["/symbols/sunny.jpg", "/symbols/cloudy.jpg"];
+const WEATHER_ICONS = {
+  "sunny": "/symbols/sunny.jpg",
+  "cloudy": "/symbols/cloudy.jpg",
+};
+
+const getWeatherIcon = (weatherCode) => {
+  switch (true) {
+    case (weatherCode === 1):
+      return "sunny";
+    case (weatherCode > 1 && weatherCode < 10):
+      return "cloudy"
+
+    default:
+      return "cloudy"
+  }
+}
 
 export default function WeatherCard({ card }) {
-  const imageUrl = BACKEND_URL + WEATHER_ICONS(card.weatherCode);
+  const imageUrl = BACKEND_URL + WEATHER_ICONS[getWeatherIcon(card.weatherCode)];
 
   return (
     <div className='card'>
