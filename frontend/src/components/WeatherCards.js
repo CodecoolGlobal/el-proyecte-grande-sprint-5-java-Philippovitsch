@@ -1,13 +1,11 @@
 import WeatherCard from "./WeatherCard";
 
-const WeatherCards = ({ weatherCards }) => {
-    return (
-        <>
-            {weatherCards.map((weatherCard) => (
-                <WeatherCard key={weatherCard.id} weatherCard={weatherCard}/>
-            ))}
-        </>
-    );
-};
-
-export default WeatherCards;
+export default function WeatherCards({ weatherCards }) {
+  return (
+    <>
+      {weatherCards.map((card) => (
+        <WeatherCard key={card.id} card={card} />
+      ))}
+    </>
+  );
+}

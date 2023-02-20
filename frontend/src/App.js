@@ -3,23 +3,21 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WeatherCards from "./components/WeatherCards";
-import WeatherFetcher from "./components/WeatherFetcher";
+import fetchWeather from "./functions/fetch";
 
-function App() {
+export default function App() {
+  const location = "Vienna";
+  const [weatherCards, setWeatherCards] = useState([]);
+  useEffect(async () => {
+    const cards = await fetchWeather(location);
+    setWeatherCards(cards);
+  }, [location]);
 
-    const location = 'Vienna'
-
-    let [weatherCards, setWeatherCards] = useState([])
-
-    WeatherFetcher(location, setWeatherCards)
-
-    return (
-    <div className="App">
-        <Header title="Weather Tracker"/>
-        <WeatherCards weatherCards={weatherCards}/>
-        <Footer />
+  return (
+    <div className='App'>
+      <Header title='Weather Tracker' />
+      <WeatherCards weatherCards={weatherCards} />
+      <Footer />
     </div>
-    );
+  );
 }
-
-export default App;
