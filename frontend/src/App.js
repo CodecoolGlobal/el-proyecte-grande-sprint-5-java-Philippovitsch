@@ -9,7 +9,6 @@ export default function App() {
   const location = "Vienna";
   const [weatherCards, setWeatherCards] = useState([]);
 
-  
   useEffect(() => {
     async function updateWeatherCards() {
       const cards = await fetchWeather(location);

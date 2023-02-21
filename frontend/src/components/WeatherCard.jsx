@@ -3,7 +3,6 @@ const WEATHER_ICONS = {
   "sunny": "/symbols/sunny.jpg",
   "cloudy": "/symbols/cloudy.jpg",
 };
-
 const getWeatherIcon = (weatherCode) => {
   switch (true) {
     case (weatherCode === 1):
@@ -18,7 +17,6 @@ const getWeatherIcon = (weatherCode) => {
 
 export default function WeatherCard({ card }) {
   const imageUrl = BACKEND_URL + WEATHER_ICONS[getWeatherIcon(card.weatherCode)];
-
   return (
     <div className='card'>
       <h2 className='location'>{card.location}</h2>
