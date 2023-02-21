@@ -1,7 +1,12 @@
+import { Typography } from "@mui/material";
+
 export default function Header (props){
     return (
         <header>
-            <h1>{props.title}</h1>
+            <Typography variant="h1" color="primary" 
+                        sx={{ textAlign: 'center', fontSize: 50, mt: 2 }}>
+                {props.title}
+            </Typography>
         </header>
     );
 }

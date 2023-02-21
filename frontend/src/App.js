@@ -11,8 +11,8 @@ export default function App() {
 
   useEffect(() => {
     async function updateWeatherCards() {
-      const cards = await fetchWeather(location);
-      setWeatherCards(cards);
+      const card = await fetchWeather(location);
+      setWeatherCards(card);
     }
     updateWeatherCards();
   }, [location]);
