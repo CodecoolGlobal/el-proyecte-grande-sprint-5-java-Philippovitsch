@@ -2,7 +2,7 @@ import WeatherCard from "./WeatherCard";
 
 export default function WeatherCards({ weatherCards }) {
   return (
-    <div class="cardwrapper">
+    <div className="cardwrapper">
       {weatherCards.map((card) => (
         <WeatherCard key={card.id} card={card} />
       ))}
