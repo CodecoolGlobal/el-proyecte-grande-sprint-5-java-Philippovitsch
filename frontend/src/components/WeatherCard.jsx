@@ -42,7 +42,7 @@ const getWeatherIcon = (weatherCode) => {
 
 export default function WeatherCard({ card, handleCloseClick }) {
   const weatherImageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
-  const windDirection = card.windDirection;
+  const windDirection = card.windDirection + 180;
   return (
     <div className='card'>
       <Card sx={{ maxWidth: 345, p: 4 }}>
