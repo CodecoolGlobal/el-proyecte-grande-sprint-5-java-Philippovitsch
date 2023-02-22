@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import TsunamiIcon from '@mui/icons-material/Tsunami';
+import AddLocation from "./AddLocation";
 
 export default function Header (props){
     return (
@@ -25,8 +26,7 @@ export default function Header (props){
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {props.title}
                     </Typography>
-                    <Button color="inherit">Register</Button>
-                    <Button color="inherit">Login</Button>
+                        <AddLocation fetchLocations={props.fetchLocations} addLocation={props.addLocation}/>
                     </Toolbar>
                 </AppBar>
             </Box>

@@ -51,6 +51,7 @@ footer {
 
 .add-location {
     margin: 10px;
+    color: white;
 }
 
 .location-drop-down {
@@ -59,4 +60,15 @@ footer {
     background-color: white;
     border: 1px solid gray;
     border-radius: 3px;
+    color: black;
+}
+
+.location-textfield {
+    background-color: #e7f0fe;
+    border-radius: 4px;
+    color: white;
+}
+
+label {
+    color: rgba(0, 0, 0, 0.6) !important;
 }
