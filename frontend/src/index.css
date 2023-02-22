@@ -19,11 +19,17 @@
     min-width: 280px;
 }
 
-.temperature {
-    font-size: larger;
+.compass-container {
+    position: relative;
 }
 
-footer {
-    margin-top: 30px;
-    text-align: center;
+.arrow-icon {
+    position: absolute;
+    top: 27%;
+    left: 38%;
+}
+
+.wind-icon {
+    width: 2.5em;
+    margin-bottom: -1em;
 }

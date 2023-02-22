@@ -1,11 +1,14 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
 
 const BACKEND_URL = process.env.PUBLIC_URL;
+const COMPASS_ICON = "/symbols/modern_compass_without_needle.svg"
+const ARROW_ICON = "/symbols/arrow.svg"
+const WIND_ICON = "/symbols/wind.svg"
 const WEATHER_ICONS = {
-   0: "/symbols/clear.svg",
-   1: "/symbols/mainly_clear.svg",
-   2: "/symbols/partly_clear.svg",
-   3: "/symbols/overcast.svg",
+  0: "/symbols/clear.svg",
+  1: "/symbols/mainly_clear.svg",
+  2: "/symbols/partly_clear.svg",
+  3: "/symbols/overcast.svg",
   45: "/symbols/fog.svg",
   48: "/symbols/fog.svg",                     // depositing_rime_fog
   51: "/symbols/light_rain.svg",              // light_drizzle
@@ -38,40 +41,60 @@ const getWeatherIcon = (weatherCode) => {
 
 
 export default function WeatherCard({ card }) {
-  const imageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
-
+  const weatherImageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
+  const windDirection = card.windDirection;
   return (
     <div className='card'>
       <Card sx={{ maxWidth: 345, p: 4 }}>
         <CardContent>
           <Typography className="location"
-                      variant="h4" color="primary"
-                      sx={{ textAlign: 'center', mb: 2 }}>
+            variant="h4" color="primary"
+            sx={{ textAlign: 'center', mb: 2 }}>
             {card.location}
           </Typography>
           <Typography className="temperature"
-                      variant="body1"
-                      sx={{ textAlign: 'center', mb: 2,
-                      fontSize: 24 }}>
+            variant="body1"
+            sx={{
+              textAlign: 'center', mb: 2,
+              fontSize: 24
+            }}>
             {card.temperature}
           </Typography>
           <Box sx={{ textAlign: 'center' }}>
-          <img
-            className="weather-icon"
-            src={imageUrl}
-            alt='weather icon'
-            width='100'
-          ></img>
+            <img
+              className="weather-icon"
+              src={weatherImageUrl}
+              alt='weather icon'
+              width='100' />
+            <br />
+            <br />
+          </Box>
+          <Box
+            className="compass-container"
+            sx={{ textAlign: 'center' }}>
+            <img
+              className="compass, compass-icon"
+              src={COMPASS_ICON}
+              alt='compass icon'
+              width='100' />
+            <img
+              className="compass, arrow-icon"
+              src={ARROW_ICON}
+              alt='compass icon'
+              width='40'
+              style={{ rotate: windDirection + "deg" }} />
+          </Box>
+          <Box
+            sx={{ textAlign: 'center', mb: 2 }}>
+            <img
+              className="wind-icon"
+              src={WIND_ICON}
+              alt="wind icon" />
           </Box>
           <Typography className="windspeed"
-                      variant="body1"
-                      sx={{ textAlign: 'center', mb: 2 }}>
-            Wind Speed: {card.windSpeed}
-          </Typography>
-          <Typography className="winddirection"
-                      variant="body1"
-                      sx={{ textAlign: 'center', mb: 2 }}>
-            Wind Direction: {card.windDirection}
+            variant="body1"
+            sx={{ textAlign: 'center', mb: 2 }}>
+            {card.windSpeed}
           </Typography>
         </CardContent>
       </Card>
