@@ -50,9 +50,8 @@ export default function App() {
       }
       setWeatherCards(tempWeatherCards);
     };
-
     loadWeatherCards();
-  }, [weatherCards]);
+  }, [defaultLocations]);
 
   return (
     <div className='App'>
