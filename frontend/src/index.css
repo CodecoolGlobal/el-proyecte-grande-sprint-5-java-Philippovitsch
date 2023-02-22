@@ -37,3 +37,11 @@ footer {
 .add-location {
     margin: 10px;
 }
+
+.location-drop-down {
+    z-index: 999;
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 3px;
+}

@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import { MenuItem } from "@mui/material";
 
 export default function LocationDropDown({ locations, onAdd }) {
   return (
-    <div>
-      <ul>
-        { locations.map((location, id) => (
-            <li key={id} onClick={() => onAdd(location)} style={{cursor: "pointer"}}>
-              {location.name} <em>({location.country})</em>
-            </li>
-        ))}
-      </ul>
+    <div className='location-drop-down'>
+      {locations.map((location, id) => (
+        <MenuItem
+          onClick={() => onAdd(location)}
+          style={{cursor: "pointer"}}
+          key={id}
+        >
+          {location.name}&nbsp;<em>({location.country})</em>
+        </MenuItem>
+      ))}
     </div>
   )
 }

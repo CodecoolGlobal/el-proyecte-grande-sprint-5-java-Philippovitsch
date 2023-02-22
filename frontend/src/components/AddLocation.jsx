@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import { TextField } from "@mui/material";
 import LocationDropDown from './LocationDropDown';
 
 export default function AddLocation({ fetchLocations, addLocation }) {
@@ -17,16 +18,15 @@ const [locations, setLocations] = useState([]);
   }
 
   const onAdd = (location) => {
-    addLocation(location);
+    addLocation(location, setShowDropDown);
   }
 
   return (
     <div>
       <div className='add-location'>
-        <label>Add location: </label>
-        <input
-          type="text"
-          placeholder=""
+        <TextField
+          label="Add location"
+          variant="outlined"
           onChange={(event) => getLocations(event.target.value)}
         />
         {showDropDown && <LocationDropDown locations={locations} onAdd={onAdd}/>}
