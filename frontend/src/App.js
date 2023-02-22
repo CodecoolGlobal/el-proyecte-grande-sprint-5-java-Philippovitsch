@@ -93,8 +93,7 @@ export default function App() {
 
   return (
     <div className='App'>
-      <Header title='WeatherTracker' />
-      <AddLocation fetchLocations={fetchLocations} addLocation={addLocation}/>
+      <Header title='WeatherTracker' fetchLocations={fetchLocations} addLocation={addLocation} />
       <WeatherCards weatherCards={weatherCards} handleCloseClick={handleCloseClick}/>
       <Footer />
     </div>
