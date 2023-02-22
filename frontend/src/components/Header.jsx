@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import TsunamiIcon from '@mui/icons-material/Tsunami';
 
 export default function Header (props){
     return (
@@ -17,13 +18,14 @@ export default function Header (props){
                         edge="start"
                         color="inherit"
                         aria-label="menu"
-                        sx={{ mr: 2 }}
+                        sx={{ mr: 1 }}
                     >
-                        <MenuIcon />
+                        <TsunamiIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {props.title}
                     </Typography>
+                    <Button color="inherit">Register</Button>
                     <Button color="inherit">Login</Button>
                     </Toolbar>
                 </AppBar>

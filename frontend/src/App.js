@@ -55,7 +55,7 @@ export default function App() {
 
   return (
     <div className='App'>
-      <Header title='Weather Tracker' />
+      <Header title='WeatherTracker' />
       <WeatherCards weatherCards={weatherCards} />
       <Footer />
     </div>
