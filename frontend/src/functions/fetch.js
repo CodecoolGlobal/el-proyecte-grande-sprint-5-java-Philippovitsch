@@ -1,11 +1,12 @@
 let id = 1;
 
-export async function fetchWeatherData(location, latitude, longitude) {
-  const weatherRes = await fetch(`/api/weather/current/${latitude},${longitude}`);
+export async function fetchWeatherData(location) {
+  const weatherRes = await fetch(`/api/weather/current/${location.latitude},${location.longitude}`);
   const weatherData = await weatherRes.json();
   return {
       id: id++,
-      location: location,
+      location: location.name,
+      country: location.country,
       weatherCode: weatherData.weathercode,
       temperature: weatherData.temperature + " °C",
       windSpeed: weatherData.windspeed + " km/h",
@@ -15,6 +16,6 @@ export async function fetchWeatherData(location, latitude, longitude) {
 
 export async function fetchCoordinates(location) {
   const coordinatesRes = await fetch(`/api/coordinates/${location}`);
-  const coordinatesData = await coordinatesRes.json();
-  return coordinatesData;
+  const data = await coordinatesRes.text()
+  return (data) ? await JSON.parse(data) : [];
 }

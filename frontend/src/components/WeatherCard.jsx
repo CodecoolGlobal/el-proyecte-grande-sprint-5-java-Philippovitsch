@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 const BACKEND_URL = process.env.PUBLIC_URL;
 const COMPASS_ICON = "/symbols/modern_compass_without_needle.svg"
@@ -39,14 +40,21 @@ const getWeatherIcon = (weatherCode) => {
   return (weatherCode in WEATHER_ICONS) ? WEATHER_ICONS[weatherCode] : WEATHER_ICONS.unknown;
 }
 
-
-export default function WeatherCard({ card }) {
+export default function WeatherCard({ card, handleCloseClick }) {
   const weatherImageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
   const windDirection = card.windDirection;
   return (
     <div className='card'>
       <Card sx={{ maxWidth: 345, p: 4 }}>
         <CardContent>
+          <CloseIcon className="closeIcon"
+            data-cardtoclose={card.id}
+            onClick={() => { handleCloseClick(card.location) }} />
+          <Typography className="location"
+            variant="body1"
+            sx={{ textAlign: 'center', mb: 2 }}>
+            {card.country}
+          </Typography>
           <Typography className="location"
             variant="h4" color="primary"
             sx={{ textAlign: 'center', mb: 2 }}>
