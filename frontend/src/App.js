@@ -52,7 +52,7 @@ export default function App() {
       setWeatherCards(tempWeatherCards);
     };
     loadWeatherCards();
-  }, []);
+  }, [defaultLocations]);
 
   const fetchLocations = (location) => {
     return fetchCoordinates(location);
