@@ -45,9 +45,10 @@ export default function WeatherCard({ card, handleCloseClick }) {
   const windDirection = card.windDirection + 180;
   return (
     <div className='card'>
-      <Card sx={{ maxWidth: 345, p: 4 }}>
+      <Card sx={{ maxWidth: 345, pt: 3.5, pr: 3.5, pl: 3.5 }}>
         <CardContent>
           <CloseIcon className="closeIcon"
+            sx={{mb: -2}}
             data-cardtoclose={card.id}
             onClick={() => { handleCloseClick(card.location) }} />
           <Typography className="location"
@@ -63,7 +64,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
             <Typography className="location"
               variant="h4" color="primary"
               sx={{ textAlign: 'center', mb: 2 }}>
-              {(card.location.length > 10) ? card.location.substring(0, 9) + "..." : card.location}
+              {(card.location.length > 12) ? card.location.substring(0, 12) + "..." : card.location}
             </Typography>
           </Tooltip>
           <Typography className="temperature"

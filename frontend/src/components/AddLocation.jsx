@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { OutlinedInput, TextField } from "@mui/material";
+import { OutlinedInput } from "@mui/material";
 import LocationDropDown from './LocationDropDown';
 
 export default function AddLocation({ fetchLocations, addLocation }) {

@@ -1,4 +1,5 @@
 .cardwrapper {
+    margin-top: 8px;
     scroll-behavior: smooth;
     position: relative;
     overflow: auto;
@@ -15,7 +16,7 @@
 }
 
 .card {
-    min-width: 280px;
+    min-width: 320px;
 }
 
 .compass-container {
@@ -24,8 +25,8 @@
 
 .arrow-icon {
     position: absolute;
-    top: 26.5%;
-    left: 38.5%;
+    top: 26.7%;
+    left: 40.7%;
 }
 
 .wind-icon {
@@ -43,7 +44,7 @@ footer {
 
 .closeIcon {
     position: relative;
-    left: 190px;
+    left: 230px;
     top: -30px;
     color: #cacaca;
     cursor: pointer;
