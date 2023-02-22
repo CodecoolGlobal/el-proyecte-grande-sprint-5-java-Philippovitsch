@@ -27,6 +27,8 @@ export default function Header (props){
                         {props.title}
                     </Typography>
                         <AddLocation fetchLocations={props.fetchLocations} addLocation={props.addLocation}/>
+                        <Button color="inherit" variant="text">Sign Up</Button>
+                        <Button color="inherit" variant="text">Login</Button>
                     </Toolbar>
                 </AppBar>
             </Box>

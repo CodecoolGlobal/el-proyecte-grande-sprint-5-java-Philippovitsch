@@ -50,7 +50,7 @@ footer {
 }
 
 .add-location {
-    margin: 10px;
+    margin: 15px;
     color: white;
 }
 
@@ -61,6 +61,7 @@ footer {
     border: 1px solid gray;
     border-radius: 3px;
     color: black;
+    padding: 0px;
 }
 
 .location-textfield {
@@ -69,6 +70,6 @@ footer {
     color: white;
 }
 
-label {
-    color: rgba(0, 0, 0, 0.6) !important;
+input {
+    padding: 10px !important;
 }
