@@ -35,3 +35,7 @@ footer {
     color: #cacaca;
     cursor: pointer;
 }
+
+.add-location {
+    margin: 10px;
+}

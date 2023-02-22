@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
+import AddLocation from "./components/AddLocation"
 import Footer from "./components/Footer";
 import WeatherCards from "./components/WeatherCards";
-import { fetchWeatherData } from "./functions/fetch";
+import { fetchCoordinates, fetchWeatherData } from "./functions/fetch";
 
 export default function App() {
   const [defaultLocations, setDefaultLocations] = useState([
@@ -51,7 +52,11 @@ export default function App() {
       setWeatherCards(tempWeatherCards);
     };
     loadWeatherCards();
-  }, [defaultLocations]);
+  }, []);
+
+  const fetchLocations = (location) => {
+    return fetchCoordinates(location);
+  }
 
   function handleCloseClick(name) {
     setDefaultLocations(defaultLocations.filter(location => location.name != name));
@@ -60,7 +65,8 @@ export default function App() {
   return (
     <div className='App'>
       <Header title='WeatherTracker' />
-      <WeatherCards weatherCards={weatherCards} handleCloseClick={handleCloseClick} />
+      <AddLocation fetchLocations={fetchLocations}/>
+      <WeatherCards weatherCards={weatherCards} handleCloseClick={handleCloseClick}/>
       <Footer />
     </div>
   );
