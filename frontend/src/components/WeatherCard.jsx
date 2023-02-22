@@ -48,6 +48,11 @@ export default function WeatherCard({ card, handleCloseClick }) {
         <CloseIcon className="closeIcon" 
                    data-cardtoclose={ card.id }
                    onClick={() => {handleCloseClick(card.location)}} />
+            <Typography className="location"
+                    variant="body1"
+                    sx={{ textAlign: 'center', mb: 2 }}>
+            {card.country}
+          </Typography>
           <Typography className="location"
                       variant="h4" color="primary"
                       sx={{ textAlign: 'center', mb: 2 }}>
