@@ -1,3 +1,5 @@
+let cardCounter = 0;
+
 export async function fetchWeather(location) {
   const coordinatesRes = await fetch(`/api/coordinates/${location}`);
   const coordinatesData = await coordinatesRes.json();
@@ -7,14 +9,12 @@ export async function fetchWeather(location) {
     `/api/weather/current/${latitude},${longitude}`
   );
   const weatherData = await weatherRes.json();
-  return [
-    {
-      id: 1,
+  return {
+      id: cardCounter++,
       location: location,
       weatherCode: weatherData.weathercode,
       temperature: weatherData.temperature + " °C",
       windSpeed: weatherData.windspeed + " km/h",
       windDirection: weatherData.winddirection,
-    },
-  ];
+    };
 }

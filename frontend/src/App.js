@@ -6,16 +6,20 @@ import WeatherCards from "./components/WeatherCards";
 import { fetchWeather } from "./functions/fetch";
 
 export default function App() {
-  const location = "Vienna";
+  const locations = ["Vienna", "Linz", "Bregenz", "Berlin", "Paris"];
   const [weatherCards, setWeatherCards] = useState([]);
 
   useEffect(() => {
     async function updateWeatherCards() {
-      const card = await fetchWeather(location);
-      setWeatherCards(card);
+      const temporaryWeatherCards = [];
+      for (const location of locations) {
+        const card = await fetchWeather(location);
+        temporaryWeatherCards.push(card);
+      }
+      setWeatherCards(temporaryWeatherCards);
     }
     updateWeatherCards();
-  }, [location]);
+  }, locations);
 
   return (
     <div className='App'>
