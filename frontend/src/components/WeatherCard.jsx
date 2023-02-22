@@ -55,6 +55,14 @@ export default function WeatherCard({ card }) {
                       fontSize: 24 }}>
             {card.temperature}
           </Typography>
+          <Box sx={{ textAlign: 'center' }}>
+          <img
+            className="weather-icon"
+            src={imageUrl}
+            alt='weather icon'
+            width='100'
+          ></img>
+          </Box>
           <Typography className="windspeed"
                       variant="body1"
                       sx={{ textAlign: 'center', mb: 2 }}>
@@ -65,14 +73,6 @@ export default function WeatherCard({ card }) {
                       sx={{ textAlign: 'center', mb: 2 }}>
             Wind Direction: {card.windDirection}
           </Typography>
-          <Box sx={{ textAlign: 'center' }}>
-          <img
-            className="weather-icon"
-            src={imageUrl}
-            alt='weather icon'
-            width='100'
-          ></img>
-          </Box>
         </CardContent>
       </Card>
     </div>
