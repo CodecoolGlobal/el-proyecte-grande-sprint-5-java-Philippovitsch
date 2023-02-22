@@ -38,14 +38,16 @@ const getWeatherIcon = (weatherCode) => {
 }
 
 
-export default function WeatherCard({ card }) {
+export default function WeatherCard({ card, handleCloseClick }) {
   const imageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
 
   return (
     <div className='card'>
       <Card sx={{ maxWidth: 345, p: 4 }}>
         <CardContent>
-        <CloseIcon className="closeIcon" data-cardtoclose={ card.id } />
+        <CloseIcon className="closeIcon" 
+                   data-cardtoclose={ card.id }
+                   onClick={() => {handleCloseClick(card.location)}} />
           <Typography className="location"
                       variant="h4" color="primary"
                       sx={{ textAlign: 'center', mb: 2 }}>

@@ -2,7 +2,7 @@ import WeatherCard from "./WeatherCard";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 
-export default function WeatherCards({ weatherCards }) {
+export default function WeatherCards({ weatherCards, handleCloseClick }) {
   return (
     <div className="cardwrapper">
       {weatherCards.length == 0 && 
@@ -10,7 +10,7 @@ export default function WeatherCards({ weatherCards }) {
         <LinearProgress />
       </Box>}
       {weatherCards.map((card) => (
-        <WeatherCard key={card.id} card={card} />
+        <WeatherCard key={card.id} card={card} handleCloseClick={handleCloseClick} />
       ))}
     </div>
   );
