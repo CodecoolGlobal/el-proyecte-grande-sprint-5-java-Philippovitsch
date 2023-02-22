@@ -35,6 +35,10 @@
 
 footer {
     text-align: center;
+    position: fixed;
+    left:8px;
+    right: 8px;
+    bottom: 8px;
 }
 
 .closeIcon {
