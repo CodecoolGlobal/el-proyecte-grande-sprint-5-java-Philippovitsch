@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box, Tooltip } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
 const BACKEND_URL = process.env.PUBLIC_URL;
@@ -55,11 +55,17 @@ export default function WeatherCard({ card, handleCloseClick }) {
             sx={{ textAlign: 'center', mb: 2 }}>
             {card.country}
           </Typography>
-          <Typography className="location"
-            variant="h4" color="primary"
-            sx={{ textAlign: 'center', mb: 2 }}>
-            {card.location}
-          </Typography>
+          <Tooltip
+            title={
+              <Typography>{card.location}</Typography>
+            }
+            placement="top">
+            <Typography className="location"
+              variant="h4" color="primary"
+              sx={{ textAlign: 'center', mb: 2 }}>
+              {(card.location.length > 10) ? card.location.substring(0, 9) + "..." : card.location}
+            </Typography>
+          </Tooltip>
           <Typography className="temperature"
             variant="body1"
             sx={{
