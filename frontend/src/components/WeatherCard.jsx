@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 const BACKEND_URL = process.env.PUBLIC_URL;
 const WEATHER_ICONS = {
@@ -44,6 +45,7 @@ export default function WeatherCard({ card }) {
     <div className='card'>
       <Card sx={{ maxWidth: 345, p: 4 }}>
         <CardContent>
+        <CloseIcon className="closeIcon" data-cardtoclose={ card.id } />
           <Typography className="location"
                       variant="h4" color="primary"
                       sx={{ textAlign: 'center', mb: 2 }}>
