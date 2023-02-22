@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 export default function WeatherCards({ weatherCards }) {
   return (
     <div className="cardwrapper">
-      {weatherCards.length == 0 && 
+      {weatherCards.length === 0 && 
       <Box sx={{ width: '100%' }}>
         <LinearProgress />
       </Box>}

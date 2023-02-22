@@ -15,6 +15,6 @@ export async function fetchWeatherData(location, latitude, longitude) {
 
 export async function fetchCoordinates(location) {
   const coordinatesRes = await fetch(`/api/coordinates/${location}`);
-  const coordinatesData = await coordinatesRes.json();
-  return coordinatesData;
+  const data = await coordinatesRes.text()
+  return (data) ? await JSON.parse(data) : [];
 }
