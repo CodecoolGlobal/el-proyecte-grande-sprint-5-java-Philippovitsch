@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import LocationDropDown from './LocationDropDown';
 
-export default function AddLocation({ fetchLocations }) {
+export default function AddLocation({ fetchLocations, addLocation }) {
 const [showDropDown, setShowDropDown] = useState(false);
 const [locations, setLocations] = useState([]);
 
@@ -16,6 +16,10 @@ const [locations, setLocations] = useState([]);
     setShowDropDown(true);
   }
 
+  const onAdd = (location) => {
+    addLocation(location);
+  }
+
   return (
     <div>
       <div className='add-location'>
@@ -25,12 +29,13 @@ const [locations, setLocations] = useState([]);
           placeholder=""
           onChange={(event) => getLocations(event.target.value)}
         />
-        {showDropDown && <LocationDropDown locations={locations}/>}
+        {showDropDown && <LocationDropDown locations={locations} onAdd={onAdd}/>}
       </div>
     </div>
   )
 }
 
 AddLocation.propTypes = {
-  fetchLocations: PropTypes.func.isRequired
+  fetchLocations: PropTypes.func.isRequired,
+  addLocation: PropTypes.func.isRequired
 }
