@@ -24,8 +24,8 @@
 
 .arrow-icon {
     position: absolute;
-    top: 27%;
-    left: 38%;
+    top: 26.5%;
+    left: 38.5%;
 }
 
 .wind-icon {
@@ -36,7 +36,7 @@
 footer {
     text-align: center;
     position: fixed;
-    left:8px;
+    left: 8px;
     right: 8px;
     bottom: 8px;
 }
