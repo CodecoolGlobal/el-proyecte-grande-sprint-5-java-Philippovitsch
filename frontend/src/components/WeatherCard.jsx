@@ -1,5 +1,7 @@
 import { Card, CardContent, Typography, Box, Tooltip } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import { useState } from "react";
+import Modal from "./Modal";
 
 const BACKEND_URL = process.env.PUBLIC_URL;
 const COMPASS_ICON = "/symbols/modern_compass_without_needle.svg"
@@ -41,11 +43,25 @@ const getWeatherIcon = (weatherCode) => {
 }
 
 export default function WeatherCard({ card, handleCloseClick }) {
+  const [showModal, setShowModal] = useState(false);
+
   const weatherImageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
   const windDirection = card.windDirection + 180;
+ 
+  const openModal = () => {
+    setShowModal(true);
+  }
+
+  const closeModal = () => {
+    setShowModal(false);
+  }
+
   return (
     <div className='card'>
-      <Card sx={{ maxWidth: 345, pt: 3.5, pr: 3.5, pl: 3.5 }}>
+      <Card
+        sx={{ maxWidth: 345, pt: 3.5, pr: 3.5, pl: 3.5 }}
+        onClick={openModal}
+      >
         <CardContent>
           <CloseIcon className="closeIcon"
             sx={{mb: -2}}
@@ -113,6 +129,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
           </Typography>
         </CardContent>
       </Card>
+      {showModal && <Modal closeModal={closeModal} locationData={card} />}
     </div>
   );
 }
