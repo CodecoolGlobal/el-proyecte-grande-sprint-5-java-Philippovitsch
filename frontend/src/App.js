@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
-import AddLocation from "./components/AddLocation"
 import Footer from "./components/Footer";
 import WeatherCards from "./components/WeatherCards";
 import { fetchCoordinates, fetchWeatherData } from "./functions/fetch";
