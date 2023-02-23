@@ -1,4 +1,5 @@
 .cardwrapper {
+    scroll-snap-type: x mandatory;
     margin-top: 8px;
     scroll-behavior: smooth;
     position: relative;
@@ -16,6 +17,9 @@
 }
 
 .card {
+    scroll-snap-align: start;
+    scroll-margin-left: 30px;
+    scroll-snap-stop: always;
     min-width: 320px;
 }
 
