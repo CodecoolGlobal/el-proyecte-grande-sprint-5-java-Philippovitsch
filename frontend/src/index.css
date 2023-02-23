@@ -114,3 +114,11 @@ input {
     text-decoration: none;
     cursor: pointer;
 }
+
+.fun-fact {
+    white-space: normal;
+    margin-top: 40px;
+    background-color: lightgray;
+    padding: 1px 10px 10px 10px;
+    min-height: 80px;
+}
