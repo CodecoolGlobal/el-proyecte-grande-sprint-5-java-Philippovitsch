@@ -21,6 +21,12 @@ const [locations, setLocations] = useState([]);
     addLocation(location, setShowDropDown);
   }
 
+  document.onkeydown = (event) => {
+    if (event.code === "Escape" && showDropDown) {
+      setShowDropDown(false);
+    }
+  };
+
   return (
     <div>
       <div className='add-location'>
