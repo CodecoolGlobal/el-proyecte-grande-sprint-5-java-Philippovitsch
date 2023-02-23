@@ -57,8 +57,9 @@ export default function Modal({ closeModal, locationData }) {
 
         <Box className="fun-fact">
           <Typography component="div" sx={{ p: 2 }}>
-            <em>Fun fact about <b>{locationData.location}</b>:</em><br /><br />
-            {funFact} <em style={{ color: "#6F7378" }}>(by OpenAI)</em>
+            <em>Fun fact about <b>{locationData.location} </b>
+            <span style={{ color: "#6F7378" }}>(by OpenAI)</span>:</em><br />
+            {funFact}
           </Typography>
         </Box>
       </div>
