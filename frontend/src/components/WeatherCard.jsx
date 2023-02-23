@@ -58,10 +58,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
 
   return (
     <div className='card'>
-      <Card
-        sx={{ maxWidth: 345, pt: 3.5, pr: 3.5, pl: 3.5 }}
-        onClick={openModal}
-      >
+      <Card sx={{ maxWidth: 345, pt: 3.5, pr: 3.5, pl: 3.5 }}>
         <CardContent>
           <CloseIcon className="closeIcon"
             sx={{mb: -2}}
@@ -79,7 +76,10 @@ export default function WeatherCard({ card, handleCloseClick }) {
             placement="top">
             <Typography className="location"
               variant="h4" color="primary"
-              sx={{ textAlign: 'center', mb: 2 }}>
+              sx={{ textAlign: 'center', mb: 2 }}
+              style={{ cursor: 'pointer' }}
+              onClick={openModal}
+            >
               {(card.location.length > 12) ? card.location.substring(0, 12) + "..." : card.location}
             </Typography>
           </Tooltip>

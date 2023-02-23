@@ -21,7 +21,6 @@
     scroll-margin-left: 30px;
     scroll-snap-stop: always;
     min-width: 320px;
-    cursor: pointer;
 }
 
 .compass-container {
