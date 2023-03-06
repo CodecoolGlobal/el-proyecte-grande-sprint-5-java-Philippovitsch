@@ -1,0 +1,123 @@
+.cardwrapper {
+    scroll-snap-type: x mandatory;
+    margin-top: 8px;
+    scroll-behavior: smooth;
+    position: relative;
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
+    gap: 30px;
+    padding: 24px;
+    background: linear-gradient(310deg, rgb(20, 23, 39), rgb(58, 65, 111));
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.cardwrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    scroll-snap-align: start;
+    scroll-margin-left: 30px;
+    scroll-snap-stop: always;
+    min-width: 320px;
+}
+
+.compass-container {
+    position: relative;
+}
+
+.arrow-icon {
+    position: absolute;
+    top: 26.7%;
+    left: 40.7%;
+}
+
+.wind-icon {
+    width: 2.5em;
+    margin-bottom: -1em;
+}
+
+footer {
+    text-align: center;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+}
+
+.closeIcon {
+    position: relative;
+    left: 230px;
+    top: -30px;
+    color: #cacaca;
+    cursor: pointer;
+}
+
+.add-location {
+    margin: 15px;
+    color: white;
+}
+
+.location-drop-down {
+    z-index: 999;
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 3px;
+    color: black;
+    padding: 0px;
+}
+
+.location-textfield {
+    background-color: #e7f0fe;
+    border-radius: 4px;
+    color: white;
+}
+
+input {
+    padding: 10px !important;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+  
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 800px;
+    height: 600px;
+}
+  
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fun-fact {
+    white-space: normal;
+    margin-top: 40px;
+    background-color: lightgray;
+    padding: 1px 10px 10px 10px;
+    min-height: 80px;
+}
