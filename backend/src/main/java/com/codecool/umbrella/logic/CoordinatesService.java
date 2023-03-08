@@ -2,6 +2,8 @@ package com.codecool.umbrella.logic;
 
 import com.codecool.umbrella.api.client.CoordinatesClient;
 import com.codecool.umbrella.api.dto.CoordinatesDTO;
+import com.codecool.umbrella.api.dto.CurrentLocationDTO;
+import com.codecool.umbrella.api.dto.CurrentWeatherDTO;
 import com.codecool.umbrella.api.dto.LocationsDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
