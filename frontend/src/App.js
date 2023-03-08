@@ -61,8 +61,8 @@ export default function App() {
     setShowDropDown(false);
   }
 
-  function handleCloseClick(name, latitude, longitude) {
-    setDefaultLocations(defaultLocations.filter(location => location.name !== name));
+  function handleCloseClick(latitude, longitude) {
+    setDefaultLocations(defaultLocations.filter(location => location.latitude !== latitude && location.longitude !== longitude));
     deleteCard(latitude, longitude);
   }
 
