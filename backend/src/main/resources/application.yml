@@ -1,3 +1,19 @@
 api:
   geocoding: "https://geocoding-api.open-meteo.com/v1/search"
   weather: "https://api.open-meteo.com/v1/forecast"
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/umbrella"
+    username: ${USERNAME}
+    password: ${PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: "create-drop"
+
+    show-sql: "true"
+    properties:
+      hibernate:
+        format_sql: "true"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+
