@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class LocationService {
 
+    private final int LATITUDE = 0;
+    private final int LONGITUDE = 1;
+
     private final LocationClient locationClient;
     private final ObjectMapper objectMapper;
 
@@ -17,7 +20,9 @@ public class LocationService {
         this.objectMapper = objectMapper;
     }
 
-    public CurrentLocationDTO getLocationByCoordinates(String latitude, String longitude) throws JsonProcessingException {
+    public CurrentLocationDTO getLocationByCoordinates(String coordinates) throws JsonProcessingException {
+        String latitude = coordinates.split(",")[LATITUDE];
+        String longitude = coordinates.split(",")[LONGITUDE];
         String json = locationClient.getBy(latitude, longitude);
         return objectMapper.readValue(json, CurrentLocationDTO.class);
     }

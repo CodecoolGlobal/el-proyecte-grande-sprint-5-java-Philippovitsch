@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/location")
 public class LocationEndpoint {
 
-    private final int LATITUDE = 0;
-    private final int LONGITUDE = 1;
-
     LocationService locationService;
 
     public LocationEndpoint(LocationService locationService) {
@@ -21,9 +18,7 @@ public class LocationEndpoint {
 
     @GetMapping("{coordinates}")
     public CurrentLocationDTO getLocationByCoordinates(@PathVariable("coordinates") String coordinates) throws JsonProcessingException {
-        String latitude = coordinates.split(",")[LATITUDE];
-        String longitude = coordinates.split(",")[LONGITUDE];
-        return locationService.getLocationByCoordinates(latitude, longitude);
+        return locationService.getLocationByCoordinates(coordinates);
     }
 
 }
