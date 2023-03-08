@@ -1,6 +1,8 @@
 api:
   geocoding: "https://geocoding-api.open-meteo.com/v1/search"
   weather: "https://api.open-meteo.com/v1/forecast"
+  reverseGeocoding: "https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&accept-language=en"
+  time: "https://www.timeapi.io/api/Time/current/coordinate"
 
 spring:
   datasource:
@@ -16,4 +18,3 @@ spring:
       hibernate:
         format_sql: "true"
         dialect: "org.hibernate.dialect.PostgreSQLDialect"
-
