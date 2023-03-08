@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WeatherCardRepository extends JpaRepository<WeatherCard, Long> {
 
-
+    WeatherCard findWeatherCardByLatitudeAndLongitude(double Latitude, double Longitude);
 
 }

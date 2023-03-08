@@ -37,6 +37,13 @@ export async function fetchCards() {
     return data;
 }
 
+export async function deleteCard(latitude, longitude) {
+  const response = await fetch(`http://localhost:8080/api/cards/delete/${latitude},${longitude}`, {
+    method: "DELETE"
+  })
+  console.log(response)
+}
+
 export async function fetchFunFact(locationData, testMode = true) {
   let response;
 

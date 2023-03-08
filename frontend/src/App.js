@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WeatherCards from "./components/WeatherCards";
-import { fetchCoordinates, fetchWeatherData, saveCard, fetchCards } from "./functions/fetch";
+import { fetchCoordinates, fetchWeatherData, saveCard, fetchCards, deleteCard } from "./functions/fetch";
 
 export default function App() {
 
@@ -24,6 +24,8 @@ export default function App() {
       const tempWeatherCards = []
       for (const location of defaultLocations) {
         const card = await fetchWeatherData(location);
+        card.latitude = location.latitude;
+        card.longitude = location.longitude;
         tempWeatherCards.push(card);
       }
       setWeatherCards(tempWeatherCards);
@@ -59,8 +61,9 @@ export default function App() {
     setShowDropDown(false);
   }
 
-  function handleCloseClick(name) {
+  function handleCloseClick(name, latitude, longitude) {
     setDefaultLocations(defaultLocations.filter(location => location.name !== name));
+    deleteCard(latitude, longitude);
   }
 
   return (
