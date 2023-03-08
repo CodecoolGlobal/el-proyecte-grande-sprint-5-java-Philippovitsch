@@ -26,9 +26,4 @@ public class CoordinatesService {
         LocationsDTO locationsDTO = objectMapper.readValue(json, LocationsDTO.class);
         return locationsDTO.getResults();
     }
-
-    public CurrentLocationDTO getLocationByCoordinates(String latitude, String longitude) throws JsonProcessingException {
-        String json = coordinatesClient.getBy(latitude, longitude);
-        return objectMapper.readValue(json, CurrentLocationDTO.class);
-    }
 }

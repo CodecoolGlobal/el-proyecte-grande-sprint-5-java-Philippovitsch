@@ -1,7 +1,6 @@
 package com.codecool.umbrella.api.endpoint;
 
 import com.codecool.umbrella.api.dto.CoordinatesDTO;
-import com.codecool.umbrella.api.dto.CurrentLocationDTO;
 import com.codecool.umbrella.logic.CoordinatesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +20,5 @@ public class CoordinatesEndpoint {
     @GetMapping("{name}")
     public List<CoordinatesDTO> getByName(@PathVariable String name) throws JsonProcessingException {
         return coordinatesService.getByName(name);
-    }
-
-    @GetMapping
-    public CurrentLocationDTO getLocationByCoordinates(
-            @RequestParam String latitude,
-            @RequestParam String longitude
-    ) throws JsonProcessingException {
-        return coordinatesService.getLocationByCoordinates(latitude, longitude);
     }
 }
