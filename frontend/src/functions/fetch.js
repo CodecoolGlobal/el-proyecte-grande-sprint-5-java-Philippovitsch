@@ -31,6 +31,12 @@ export async function saveCard(card) {
   console.log(response)
 }
 
+export async function fetchCards() {
+    const cards = await fetch(`http://localhost:8080/api/cards`);
+    const data = await cards.json();
+    return data;
+}
+
 export async function fetchFunFact(locationData, testMode = true) {
   let response;
 

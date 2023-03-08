@@ -3,47 +3,19 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WeatherCards from "./components/WeatherCards";
-import { fetchCoordinates, fetchWeatherData, saveCard } from "./functions/fetch";
+import { fetchCoordinates, fetchWeatherData, saveCard, fetchCards } from "./functions/fetch";
 
 export default function App() {
-  const [defaultLocations, setDefaultLocations] = useState([
-    {
-      name: "Vienna",
-      country: "Austria",
-      latitude: "48.20849",
-      longitude: "16.37208"
-    },
-    {
-      name: "Paris",
-      country: "France",
-      latitude: "48.85341",
-      longitude: "2.3488"
-    },
-    {
-      name: "Amsterdam",
-      country: "Netherlands",
-      latitude: "52.37403",
-      longitude: "4.88969"
-    },
-    {
-      name: "London",
-      country: "United Kingdom",
-      latitude: "51.50853",
-      longitude: "-0.12574"
-    },
-    {
-      name: "Sydney",
-      country: "Australia",
-      latitude: "-33.86785",
-      longitude: "151.20732"
-    },
-    {
-      name: "New York",
-      country: "USA",
-      latitude: "40.71427",
-      longitude: "-74.00597"
-    }
-  ]);
+
+  useEffect(() => {
+    async function setLocationsAtStart() {
+      const startLocations = await fetchCards();
+      setDefaultLocations(startLocations);
+    };
+    setLocationsAtStart();
+  }, [])
+
+  const [defaultLocations, setDefaultLocations] = useState([]);
 
   const [weatherCards, setWeatherCards] = useState([]);
 
