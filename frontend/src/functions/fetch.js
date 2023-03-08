@@ -28,7 +28,7 @@ export async function saveCard(card) {
     },
     body: JSON.stringify(card)
   })
-  console.log(response)
+  return response.status;
 }
 
 export async function fetchCards() {
@@ -41,7 +41,7 @@ export async function deleteCard(latitude, longitude) {
   const response = await fetch(`http://localhost:8080/api/cards/delete/${latitude},${longitude}`, {
     method: "DELETE"
   })
-  console.log(response)
+  return response.status;
 }
 
 export async function fetchFunFact(locationData, testMode = true) {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Snackbar, Alert } from "@mui/material";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -16,7 +17,6 @@ export default function App() {
   }, [])
 
   const [defaultLocations, setDefaultLocations] = useState([]);
-
   const [weatherCards, setWeatherCards] = useState([]);
 
   useEffect(() => {
@@ -56,20 +56,52 @@ export default function App() {
       latitude: location.latitude,
       longitude: location.longitude
     }
-    saveCard(newLocation);
+
+    async function handleSaving() {
+      const response = await saveCard(newLocation);
+      if (response === 200) {
+        setSuccessMessage("Successfully saved card!");
+        setSucessOpen(true);
+    };
+    }
+
+    handleSaving();
     setDefaultLocations([...defaultLocations, newLocation]);
     setShowDropDown(false);
   }
 
   function handleCloseClick(latitude, longitude) {
     setDefaultLocations(defaultLocations.filter(location => location.latitude !== latitude && location.longitude !== longitude));
-    deleteCard(latitude, longitude);
+    async function handleDeletion() {
+      const response = await deleteCard(latitude, longitude);
+      if (response === 200) {
+        setSuccessMessage("Successfully deleted card!");
+        setSucessOpen(true);
+      };
+    }
+    handleDeletion();
   }
+
+  const [sucessMessage, setSuccessMessage] = useState("");
+  const [sucessOpen, setSucessOpen] = useState(false);
+
+  const handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSucessOpen(false);
+  };
+
 
   return (
     <div className='App'>
       <Header title='WeatherTracker' fetchLocations={fetchLocations} addLocation={addLocation} />
       <WeatherCards weatherCards={weatherCards} handleCloseClick={handleCloseClick}/>
+      <Snackbar open={sucessOpen} autoHideDuration={6000} onClose={handleCloseSnack}>
+        <Alert onClose={handleCloseSnack} variant="filled" severity="success" sx={{ width: '100%' }}>
+          {sucessMessage}
+        </Alert>
+      </Snackbar>
       <Footer />
     </div>
   );
