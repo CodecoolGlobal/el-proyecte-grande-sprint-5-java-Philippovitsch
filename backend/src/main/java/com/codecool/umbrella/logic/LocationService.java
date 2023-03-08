@@ -2,6 +2,7 @@ package com.codecool.umbrella.logic;
 
 import com.codecool.umbrella.api.client.LocationClient;
 import com.codecool.umbrella.api.dto.CurrentLocationDTO;
+import com.codecool.umbrella.api.dto.TimeDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,15 @@ public class LocationService {
     public CurrentLocationDTO getLocationByCoordinates(String coordinates) throws JsonProcessingException {
         String latitude = coordinates.split(",")[LATITUDE];
         String longitude = coordinates.split(",")[LONGITUDE];
-        String json = locationClient.getBy(latitude, longitude);
+        String json = locationClient.getLocationBy(latitude, longitude);
         return objectMapper.readValue(json, CurrentLocationDTO.class);
+    }
+
+    public TimeDTO getLocalTimeByCoordinates(String coordinates) throws JsonProcessingException {
+        String latitude = coordinates.split(",")[LATITUDE];
+        String longitude = coordinates.split(",")[LONGITUDE];
+        String json = locationClient.getTimeBy(latitude, longitude);
+        return objectMapper.readValue(json, TimeDTO.class);
     }
 
 }

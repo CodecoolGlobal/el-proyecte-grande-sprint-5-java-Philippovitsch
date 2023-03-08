@@ -2,3 +2,4 @@ api:
   geocoding: "https://geocoding-api.open-meteo.com/v1/search"
   reverseGeocoding: "https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&accept-language=en"
   weather: "https://api.open-meteo.com/v1/forecast"
+  time: "https://www.timeapi.io/api/Time/current/coordinate"
