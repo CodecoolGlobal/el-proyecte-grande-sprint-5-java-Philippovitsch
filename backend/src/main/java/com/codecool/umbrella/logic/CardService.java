@@ -21,4 +21,11 @@ public class CardService {
         cardRepository.save(card);
     }
 
+    public void removeWeatherCard(double latitude, double longitude) {
+        WeatherCard card = cardRepository.findWeatherCardByLatitudeAndLongitude(latitude, longitude);
+        if (card != null) {
+            cardRepository.delete(card);
+        }
+    }
+
 }
