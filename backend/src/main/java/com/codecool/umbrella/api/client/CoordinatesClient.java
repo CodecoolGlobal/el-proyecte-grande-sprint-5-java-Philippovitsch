@@ -6,16 +6,28 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class CoordinatesClient {
-    private final String api;
+
+    private final String geocodingApi;
+    private final String reverseGeocodingApi;
     private WebClientService webClientService;
 
-    public CoordinatesClient(@Value("${api.geocoding}") String api, WebClientService webClientService) {
-        this.api = api;
+    public CoordinatesClient(
+            @Value("${api.geocoding}") String geocodingApi,
+            @Value("${api.reverseGeocoding}") String reverseGeocodingApi,
+            WebClientService webClientService
+    ) {
+        this.geocodingApi = geocodingApi;
+        this.reverseGeocodingApi = reverseGeocodingApi;
         this.webClientService = webClientService;
     }
 
     public String getBy(String name) {
         String params = "?name=" + name;
-        return webClientService.getOne(api, params);
+        return webClientService.getOne(geocodingApi, params);
+    }
+
+    public String getBy(String latitude, String longitude) {
+        String params = String.format("&lat=%s&lon=%s", latitude, longitude);
+        return webClientService.getOne(reverseGeocodingApi, params);
     }
 }
