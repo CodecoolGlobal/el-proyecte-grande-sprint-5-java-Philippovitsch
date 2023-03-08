@@ -20,6 +20,17 @@ export async function fetchCoordinates(location) {
   return (data) ? await JSON.parse(data) : [];
 }
 
+export async function saveCard(card) {
+  const response = await fetch(`http://localhost:8080/api/cards`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(card)
+  })
+  console.log(response)
+}
+
 export async function fetchFunFact(locationData, testMode = true) {
   let response;
 

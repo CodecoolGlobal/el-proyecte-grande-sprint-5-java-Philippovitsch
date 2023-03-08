@@ -1,5 +1,6 @@
 package com.codecool.umbrella.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name="cards")
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class WeatherCard {
 
     @Id
@@ -16,6 +18,8 @@ public class WeatherCard {
     private Long id;
 
     private String name;
+
+    private String country;
 
     private double latitude;
 

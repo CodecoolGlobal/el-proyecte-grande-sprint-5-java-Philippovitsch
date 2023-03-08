@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WeatherCards from "./components/WeatherCards";
-import { fetchCoordinates, fetchWeatherData } from "./functions/fetch";
+import { fetchCoordinates, fetchWeatherData, saveCard } from "./functions/fetch";
 
 export default function App() {
   const [defaultLocations, setDefaultLocations] = useState([
@@ -82,6 +82,7 @@ export default function App() {
       latitude: location.latitude,
       longitude: location.longitude
     }
+    saveCard(newLocation);
     setDefaultLocations([...defaultLocations, newLocation]);
     setShowDropDown(false);
   }
