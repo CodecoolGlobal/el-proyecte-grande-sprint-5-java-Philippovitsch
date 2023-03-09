@@ -66,7 +66,7 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
               </ListItemButton>
             </List>
           </Grid>
-          <Grid item xs={7.7}>
+          <Grid item xs={7.7} style={{ paddingTop: 0, paddingLeft: 0 }}>
             <ForecastChart locationData={locationData} />
           </Grid>
           <Grid item xs={12}>

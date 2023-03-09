@@ -2,7 +2,6 @@ import { Card, CardContent, Typography } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { DatePicker } from '@mui/lab';
 
 import React from 'react'
 
