@@ -16,7 +16,7 @@ export default function Calendar( {handleCalendarClick} ) {
         <CardContent>
           <Typography className="location"
             variant="body1"
-            sx={{ textAlign: 'center', mb: 2 }}>
+            sx={{ textAlign: 'center' }}>
             Event Calendar
           </Typography>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

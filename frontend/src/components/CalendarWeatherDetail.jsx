@@ -22,11 +22,11 @@ export default function CalendarWeatherDetail( {chosenDate, weatherData} ) {
         location: (geolocation !== "unknown") ? geolocation.split(",")[0] : "Vienna",
         temperature: weatherData !== undefined ? weatherData.temperature_2m_max[0] : 0,
         weatherCode: weatherData !== undefined ? weatherData.weathercode[0] : 0,
-        windSpeed:weatherData !== undefined ? weatherData.windspeed_10m_max[0] : 0
+        windSpeed:weatherData !== undefined ? weatherData.windspeed_10m_max[0] + " km/h" : 0
     }
     return (
         <div>
-            {weatherData !== undefined ? <WeatherCard card={cardData}/> : ''}
+            {weatherData !== undefined ? <WeatherCard card={cardData} displayModal={false} /> : ''}
         </div>
   )
 }

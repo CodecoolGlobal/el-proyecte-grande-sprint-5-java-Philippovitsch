@@ -43,7 +43,7 @@ const getWeatherIcon = (weatherCode) => {
   return (weatherCode in WEATHER_ICONS) ? WEATHER_ICONS[weatherCode] : WEATHER_ICONS.unknown;
 }
 
-export default function WeatherCard({ card, handleCloseClick }) {
+export default function WeatherCard({ card, handleCloseClick, displayModal }) {
   const [showModal, setShowModal] = useState(false);
 
   const weatherImageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
@@ -101,7 +101,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
             <br />
             <br />
           </Box>
-          <Box
+          { displayModal && <Box
             className="compass-container"
             sx={{ textAlign: 'center' }}>
             <img
@@ -115,7 +115,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
               alt='compass icon'
               width='40'
               style={{ rotate: windDirection + "deg" }} />
-          </Box>
+          </Box> }
           <Box
             sx={{ textAlign: 'center', mb: 2 }}>
             <img
@@ -130,12 +130,13 @@ export default function WeatherCard({ card, handleCloseClick }) {
           </Typography>
         </CardContent>
       </Card>
-      {showModal && <Modal closeModal={closeModal} locationData={card} weatherIcon={getWeatherIcon(card.weatherCode)}/>}
+      {(showModal && displayModal) && <Modal closeModal={closeModal} locationData={card} weatherIcon={getWeatherIcon(card.weatherCode)}/>}
     </div>
   );
 }
 
 WeatherCard.propTypes = {
   card: PropTypes.object.isRequired,
-  handleCloseClick: PropTypes.func.isRequired
+  handleCloseClick: PropTypes.func.isRequired,
+  displayModal: PropTypes.bool.isRequired
 }

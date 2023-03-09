@@ -10,7 +10,7 @@ export default function WeatherCards({ weatherCards, handleCloseClick }) {
         <LinearProgress />
       </Box>}
       {weatherCards.map((card) => (
-        <WeatherCard key={card.id} card={card} handleCloseClick={handleCloseClick} />
+        <WeatherCard key={card.id} card={card} handleCloseClick={handleCloseClick} displayModal={true}/>
       ))}
     </div>
   );

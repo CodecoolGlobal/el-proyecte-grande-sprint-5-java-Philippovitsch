@@ -102,5 +102,5 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
 Modal.propTypes = {
     closeModal: PropTypes.func.isRequired,
     locationData: PropTypes.object.isRequired,
-    weatherIcon: PropTypes.string.isRequired
+    weatherIcon: PropTypes.string.isRequired,
 }
