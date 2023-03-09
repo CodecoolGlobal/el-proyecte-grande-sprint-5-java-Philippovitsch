@@ -44,6 +44,21 @@ export async function deleteCard(latitude, longitude) {
   return response.status;
 }
 
+export async function fetchDailyData(latitude, longitude, date) {
+  const weatherRes = await fetch(`api/weather/${latitude},${longitude}/day/${date}`);
+  const weatherData = await weatherRes.json();
+  return weatherData;
+  // return {
+  //     id: id++,
+  //     location: location.name,
+  //     country: location.country,
+  //     weatherCode: weatherData.weathercode,
+  //     temperature: weatherData.temperature + " °C",
+  //     windSpeed: weatherData.windspeed + " km/h",
+  //     windDirection: weatherData.winddirection,
+  //   }
+}
+
 export async function fetchFunFact(locationData, testMode = true) {
   let response;
 
