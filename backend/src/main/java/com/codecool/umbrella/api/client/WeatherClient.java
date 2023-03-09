@@ -6,11 +6,17 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class WeatherClient {
-    private final String api;
-    private WebClientService webClientService;
+    private final String currentWeatherApi;
+    private final String forecastWeatherApi;
+    private final WebClientService webClientService;
 
-    public WeatherClient(@Value("${api.weather}") String api, WebClientService webClientService) {
-        this.api = api;
+    public WeatherClient(
+            @Value("${api.weather}") String currentWeatherApi,
+            @Value("${api.weatherForecast}") String forecastWeatherApi,
+            WebClientService webClientService
+    ) {
+        this.currentWeatherApi = currentWeatherApi;
+        this.forecastWeatherApi = forecastWeatherApi;
         this.webClientService = webClientService;
     }
 
@@ -22,6 +28,17 @@ public class WeatherClient {
                 , latitude
                 , longitude
         );
-        return webClientService.getOne(api, params);
+        return webClientService.getOne(currentWeatherApi, params);
+    }
+
+    public String getForecastBy(String coordinates) {
+        String latitude = coordinates.split(",")[0];
+        String longitude = coordinates.split(",")[1];
+        String params = String.format(
+                "&latitude=%s&longitude=%s"
+                , latitude
+                , longitude
+        );
+        return webClientService.getOne(forecastWeatherApi, params);
     }
 }
