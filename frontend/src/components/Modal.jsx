@@ -37,6 +37,12 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
     return weatherState.substring(0, 1).toUpperCase() + weatherState.substring(1).toLowerCase().replace("_", " ");
   }
 
+  const getWindDirection = () => {
+    const angle = locationData.windDirection + 180;
+    const directions = ['↑ North', '↗ North-East', '→ East', '↘ South-East', '↓ South', '↙ South-West', '← West', '↖ North-West'];
+    return directions[Math.round(angle / 45) % 8];
+  }
+
   return (
     <div className="modal" onClick={closeModal}>
       <div className="modal-content" onClick={(event) => {event.stopPropagation()}} style={{cursor: 'default'}}>
@@ -59,7 +65,7 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
                 <ListItemText><b>Weather: </b>{getWeatherState()}</ListItemText>
               </ListItemButton>
               <ListItemButton style={{cursor: 'default'}}>
-                <ListItemText><b>Wind direction: </b>{locationData.windDirection}°</ListItemText>
+                <ListItemText><b>Wind direction: </b>{getWindDirection()}</ListItemText>
               </ListItemButton>
               <ListItemButton style={{cursor: 'default'}}>
                 <ListItemText><b>Wind speed: </b>{locationData.windSpeed}</ListItemText>
