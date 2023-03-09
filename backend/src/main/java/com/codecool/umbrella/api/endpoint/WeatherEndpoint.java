@@ -1,6 +1,7 @@
 package com.codecool.umbrella.api.endpoint;
 
 import com.codecool.umbrella.api.dto.CurrentWeatherDTO;
+import com.codecool.umbrella.api.dto.DailyForecastDTO;
 import com.codecool.umbrella.api.dto.HourlyForecastDTO;
 import com.codecool.umbrella.logic.WeatherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,5 +25,10 @@ public class WeatherEndpoint {
     @GetMapping("{coordinates}/forecast")
     public HourlyForecastDTO getForecast(@PathVariable String coordinates) throws JsonProcessingException {
         return weatherService.getForecastByCoordinates(coordinates);
+    }
+
+    @GetMapping("{coordinates}/day/{date}")
+    public DailyForecastDTO getForecastForDay(@PathVariable String coordinates, @PathVariable String date) throws JsonProcessingException {
+        return weatherService.getForecastForDay(coordinates, date);
     }
 }

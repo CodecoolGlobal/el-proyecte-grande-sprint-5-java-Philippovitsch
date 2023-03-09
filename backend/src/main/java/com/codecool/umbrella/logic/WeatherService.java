@@ -1,10 +1,7 @@
 package com.codecool.umbrella.logic;
 
 import com.codecool.umbrella.api.client.WeatherClient;
-import com.codecool.umbrella.api.dto.CurrentWeatherDTO;
-import com.codecool.umbrella.api.dto.HourlyForecastDTO;
-import com.codecool.umbrella.api.dto.WeatherDTO;
-import com.codecool.umbrella.api.dto.WeatherForecastDTO;
+import com.codecool.umbrella.api.dto.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -32,5 +29,11 @@ public class WeatherService {
         hourlyForecastDTO.setLatitude(weatherForecastDTO.getLatitude());
         hourlyForecastDTO.setLongitude(weatherForecastDTO.getLongitude());
         return hourlyForecastDTO;
+    }
+
+    public DailyForecastDTO getForecastForDay(String coordinates, String date ) throws JsonProcessingException {
+        String json = weatherClient.getForecastBy(date, coordinates);
+        SpecificDayForecastDTO specificDayForecastDTO = objectMapper.readValue(json, SpecificDayForecastDTO.class);
+        return specificDayForecastDTO.getDailyForecastDTO();
     }
 }
