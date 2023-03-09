@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
+import { useState } from "react";
 import { Card, CardContent, Typography, Box, Tooltip } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from "react";
 import Modal from "./Modal";
 
 const BACKEND_URL = process.env.PUBLIC_URL;
@@ -129,7 +130,12 @@ export default function WeatherCard({ card, handleCloseClick }) {
           </Typography>
         </CardContent>
       </Card>
-      {showModal && <Modal closeModal={closeModal} locationData={card} />}
+      {showModal && <Modal closeModal={closeModal} locationData={card} weatherIcon={getWeatherIcon(card.weatherCode)}/>}
     </div>
   );
+}
+
+WeatherCard.propTypes = {
+  card: PropTypes.object.isRequired,
+  handleCloseClick: PropTypes.func.isRequired
 }
