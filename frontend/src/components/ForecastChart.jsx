@@ -115,11 +115,7 @@ export function ForecastChart({ locationData }) {
     ],
   };
 
-  return(
-    <div>
-      <Line options={options} data={data} />
-    </div>
-  );
+  return <Line options={options} data={data} />;
 }
 
 ForecastChart.propTypes = {
