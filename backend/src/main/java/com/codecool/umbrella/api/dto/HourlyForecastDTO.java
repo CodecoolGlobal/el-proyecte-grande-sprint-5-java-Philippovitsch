@@ -17,6 +17,6 @@ public class HourlyForecastDTO {
     List<String> time;
     List<String> temperature_2m;
     List<String> windspeed_10m;
-    List<String> winddirection_10m;
+    List<String> rain;
 
 }

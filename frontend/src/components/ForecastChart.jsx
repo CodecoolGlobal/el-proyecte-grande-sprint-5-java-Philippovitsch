@@ -30,12 +30,13 @@ export function ForecastChart({ locationData }) {
     const labelData = [];
     const temperatureData = [];
     const windSpeedData = []
+    const rainData = []
     for (let i = 0; i < weatherData.time.length; i++) {
       if (timeStamps.includes(weatherData.time[i].substring(10, 16))) {
         labelData.push(convertTimeStamp(weatherData.time[i]));
         temperatureData.push(weatherData.temperature_2m[i]);
         windSpeedData.push(weatherData.windspeed_10m[i]);
-
+        rainData.push(weatherData.rain[i]);
       }
     };
 
@@ -49,12 +50,14 @@ export function ForecastChart({ locationData }) {
     setLabels(labelData);
     setTemperatures(temperatureData);
     setWindSpeeds(windSpeedData);
+    setRain(rainData);
   }
 
   const [labels, setLabels] = useState([]);
   const [temperatures, setTemperatures] = useState([]);
   const [windSpeeds, setWindSpeeds] = useState([]);
-  
+  const [rain, setRain] = useState([]);
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -79,19 +82,38 @@ export function ForecastChart({ locationData }) {
       },
     },
     scales: {
-      y: {
+      tempScale: {
         type: 'linear',
         display: true,
         position: 'left',
+        ticks: {
+          color: "rgb(255, 99, 132)"
+        }
       },
-      y1: {
+      windScale: {
         type: 'linear',
         display: true,
         position: 'right',
         grid: {
           drawOnChartArea: false,
         },
+        ticks: {
+          color: "rgb(60,179,113)"
+        }
       },
+      rainScale: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
+        ticks: {
+          color: "rgb(53, 162, 235)",
+        },
+        suggestedMax: 10
+      },
+
     },
   };
 
@@ -99,18 +121,25 @@ export function ForecastChart({ locationData }) {
     labels,
     datasets: [
       {
-        label: 'Temperatures',
+        label: 'Temperature (°C)',
         data: temperatures,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        yAxisID: 'y',
+        yAxisID: 'tempScale',
       },
       {
-        label: 'WindSpeed',
+        label: 'WindSpeed (km/h)',
         data: windSpeeds,
+        borderColor: 'rgb(60,179,113)',
+        backgroundColor: 'rgba(60,179,113, 0.5)',
+        yAxisID: 'windScale',
+      },
+      {
+        label: 'Rainfall (mm)',
+        data: rain,
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        yAxisID: 'y1',
+        yAxisID: 'rainScale',
       },
     ],
   };

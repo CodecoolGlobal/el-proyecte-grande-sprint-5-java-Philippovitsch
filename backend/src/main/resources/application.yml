@@ -1,7 +1,7 @@
 api:
   geocoding: "https://geocoding-api.open-meteo.com/v1/search"
   weather: "https://api.open-meteo.com/v1/forecast"
-  weatherForecast: "https://api.open-meteo.com/v1/forecast?hourly=temperature_2m&hourly=windspeed_10m&hourly=winddirection_10m"
+  weatherForecast: "https://api.open-meteo.com/v1/forecast?hourly=temperature_2m&hourly=windspeed_10m&hourly=rain"
   reverseGeocoding: "https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&accept-language=en"
   time: "https://www.timeapi.io/api/Time/current/coordinate"
   weatherForecastSpecificDay: "https://api.open-meteo.com/v1/forecast?daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Europe/Berlin"

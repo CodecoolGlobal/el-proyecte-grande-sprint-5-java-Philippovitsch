@@ -6,7 +6,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
-import { fetchFunFact } from '../functions/fetch';
+import { fetchData, fetchFunFact } from '../functions/fetch';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { ForecastChart } from './ForecastChart';
@@ -15,6 +15,7 @@ const TEST_MODE = true;
 
 export default function Modal({ closeModal, locationData, weatherIcon }) {
   const [funFact, setFunFact] = useState("");
+  const [localTime, setLocalTime] = useState("");
 
   document.onkeydown = (event) => {
     if (event.code === "Escape") {
@@ -23,12 +24,20 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
   };
 
   useEffect(() => {
+    const getLocalTime = async () => {
+      const latitude = locationData.latitude;
+      const longitude = locationData.longitude;
+      const localTime = await fetchData(`/api/location/${latitude},${longitude}/time`);
+      setLocalTime(`${localTime.time}`);
+    }
+
     const getFunFact = async () => {
       const data = await fetchFunFact(locationData, TEST_MODE);
       setFunFact(data[0].text);
       console.log((TEST_MODE) ? "Fetch fun fact: Test mode ON" : "Fetch fun fact: Test mode OFF!");
     }
 
+    getLocalTime();
     getFunFact();
   }, [locationData]);
 
@@ -50,13 +59,13 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
           <Grid item xs={12}>
             <span className="close" onClick={closeModal}>&times;</span>
             <Typography variant="h3" component="div" sx={{ p: 2 }}>
-              {locationData.location}
+              {locationData.location} <em>({locationData.country})</em>
             </Typography>
           </Grid>
           <Grid item xs={4.3}>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', marginTop: 0 }}>
               <ListItemButton style={{cursor: 'default'}}>
-                <ListItemText><b>Country: </b>{locationData.country}</ListItemText>
+                <ListItemText><b>Local time: </b>{localTime}</ListItemText>
               </ListItemButton>
               <ListItemButton style={{cursor: 'default'}}>
                 <ListItemText><b>Temperature: </b>{locationData.temperature}</ListItemText>
