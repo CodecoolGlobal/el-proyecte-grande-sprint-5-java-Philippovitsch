@@ -61,7 +61,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
     <div className='card'>
       <Card sx={{ maxWidth: 345, pt: 3.5, pr: 3.5, pl: 3.5 }}>
         <CardContent>
-          {handleCloseClick != undefined ? <CloseIcon className="closeIcon"
+          {handleCloseClick !== undefined ? <CloseIcon className="closeIcon"
             sx={{mb: -2}}
             data-cardtoclose={card.id}
             onClick={() => { handleCloseClick(card.latitude, card.longitude) }} /> : ''}
