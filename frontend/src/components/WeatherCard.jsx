@@ -47,7 +47,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
 
   const weatherImageUrl = BACKEND_URL + getWeatherIcon(card.weatherCode);
   const windDirection = card.windDirection + 180;
- 
+
   const openModal = () => {
     setShowModal(true);
   }
@@ -61,7 +61,7 @@ export default function WeatherCard({ card, handleCloseClick }) {
       <Card sx={{ maxWidth: 345, pt: 3.5, pr: 3.5, pl: 3.5 }}>
         <CardContent>
           <CloseIcon className="closeIcon"
-            sx={{mb: -2}}
+            sx={{ mb: -2 }}
             data-cardtoclose={card.id}
             onClick={() => { handleCloseClick(card.latitude, card.longitude) }} />
           <Typography className="location"
