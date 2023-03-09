@@ -9,10 +9,11 @@ import Grid from '@mui/material/Grid';
 import { fetchFunFact } from '../functions/fetch';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
+import { ForecastChart } from './ForecastChart';
 
 const TEST_MODE = true;
 
-export default function Modal({ closeModal, locationData }) {
+export default function Modal({ closeModal, locationData, weatherIcon }) {
   const [funFact, setFunFact] = useState("");
 
   document.onkeydown = (event) => {
@@ -30,6 +31,11 @@ export default function Modal({ closeModal, locationData }) {
 
     getFunFact();
   }, [locationData]);
+
+  const getWeatherState = () => {
+    const weatherState = weatherIcon.substring(weatherIcon.lastIndexOf("/") + 1, weatherIcon.lastIndexOf("."));
+    return weatherState.substring(0, 1).toUpperCase() + weatherState.substring(1).toLowerCase().replace("_", " ");
+  }
 
   return (
     <div className="modal" onClick={closeModal}>
@@ -50,7 +56,7 @@ export default function Modal({ closeModal, locationData }) {
                 <ListItemText><b>Temperature: </b>{locationData.temperature}</ListItemText>
               </ListItemButton>
               <ListItemButton style={{cursor: 'default'}}>
-                <ListItemText><b>Weather code: </b>{locationData.weatherCode}</ListItemText>
+                <ListItemText><b>Weather: </b>{getWeatherState()}</ListItemText>
               </ListItemButton>
               <ListItemButton style={{cursor: 'default'}}>
                 <ListItemText><b>Wind direction: </b>{locationData.windDirection}°</ListItemText>
@@ -61,12 +67,7 @@ export default function Modal({ closeModal, locationData }) {
             </List>
           </Grid>
           <Grid item xs={7.7}>
-            <img
-              style={{ display: "inline-block", marginTop: 10 }}
-              src="https://www.sumomag.at/wp-content/uploads/2016/02/Corporate-Publishing_1-e1455555060462.png"
-              alt="placeholder"
-              width={450}
-            />
+            <ForecastChart locationData={locationData} />
           </Grid>
           <Grid item xs={12}>
             <Box className="fun-fact">
@@ -85,5 +86,6 @@ export default function Modal({ closeModal, locationData }) {
 
 Modal.propTypes = {
     closeModal: PropTypes.func.isRequired,
-    locationData: PropTypes.object.isRequired
+    locationData: PropTypes.object.isRequired,
+    weatherIcon: PropTypes.string.isRequired
 }
