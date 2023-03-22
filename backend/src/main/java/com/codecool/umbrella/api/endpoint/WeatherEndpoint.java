@@ -7,7 +7,7 @@ import com.codecool.umbrella.logic.WeatherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+@CrossOrigin(originPatterns = {"*"}, maxAge = 3600, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/weather/")
 public class WeatherEndpoint {

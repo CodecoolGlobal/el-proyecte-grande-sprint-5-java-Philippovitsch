@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(originPatterns = {"*"}, maxAge = 3600, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/cards")
 public class WeatherCardsEndpoint {

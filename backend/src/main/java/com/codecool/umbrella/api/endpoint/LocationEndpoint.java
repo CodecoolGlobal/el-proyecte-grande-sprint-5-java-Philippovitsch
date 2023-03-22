@@ -4,11 +4,13 @@ import com.codecool.umbrella.api.dto.CurrentLocationDTO;
 import com.codecool.umbrella.api.dto.TimeDTO;
 import com.codecool.umbrella.logic.LocationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.annotation.security.PermitAll;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 
-@CrossOrigin
+@CrossOrigin(originPatterns = {"*"}, maxAge = 3600, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/location")
 public class LocationEndpoint {
