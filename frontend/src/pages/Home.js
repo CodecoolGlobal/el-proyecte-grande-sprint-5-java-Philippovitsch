@@ -5,20 +5,27 @@ import WeatherCards from "../components/WeatherCards";
 import { fetchCoordinates, fetchWeatherData, saveCard, fetchCards, deleteCard } from "../functions/fetch";
 
 
-export default function Home() {
+export default function Home({userData}) {
     useEffect(() => {
         async function setLocationsAtStart() {
+            if (!userData) {
+                return;
+            }
             const startLocations = await fetchCards();
             setDefaultLocations(startLocations);
         };
         setLocationsAtStart();
-    }, [])
+    }, [userData])
 
     const [defaultLocations, setDefaultLocations] = useState([]);
     const [weatherCards, setWeatherCards] = useState([]);
 
     useEffect(() => {
         async function loadWeatherCards() {
+            if (!userData) {
+                return;
+            }
+
             const tempWeatherCards = []
             for (const location of defaultLocations) {
                 const card = await fetchWeatherData(location);
@@ -29,7 +36,7 @@ export default function Home() {
             setWeatherCards(tempWeatherCards);
         };
         loadWeatherCards();
-    }, [defaultLocations]);
+    }, [defaultLocations, userData]);
 
     const fetchLocations = (location) => {
         return fetchCoordinates(location);
@@ -93,13 +100,17 @@ export default function Home() {
 
     return (
         <div className='App'>
-            <AddLocation fetchLocations={fetchLocations} addLocation={addLocation} />
-            <WeatherCards weatherCards={weatherCards} handleCloseClick={handleCloseClick} />
-            <Snackbar open={sucessOpen} autoHideDuration={6000} onClose={handleCloseSnack}>
-                <Alert onClose={handleCloseSnack} variant="filled" severity="success" sx={{ width: '100%' }}>
-                    {sucessMessage}
-                </Alert>
-            </Snackbar>
+            { userData &&
+            <>
+                <AddLocation fetchLocations={fetchLocations} addLocation={addLocation} />
+                <WeatherCards weatherCards={weatherCards} handleCloseClick={handleCloseClick} />
+                <Snackbar open={sucessOpen} autoHideDuration={6000} onClose={handleCloseSnack}>
+                    <Alert onClose={handleCloseSnack} variant="filled" severity="success" sx={{ width: '100%' }}>
+                        {sucessMessage}
+                    </Alert>
+                </Snackbar>
+            </>
+            }
         </div>
     );
 }

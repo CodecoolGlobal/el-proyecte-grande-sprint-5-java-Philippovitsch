@@ -1,14 +1,44 @@
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import TsunamiIcon from '@mui/icons-material/Tsunami';
 import MenuBar from './MenuBar';
 import { NavLink } from 'react-router-dom';
 
 export default function Header(props) {
+    const authenticationItems = (props.userData)
+            ? <>
+                <Typography variant="body1" sx={{ mr: 3 }}>
+                    <i>Logged in as: </i>
+                    <NavLink to="/UserDetails" className="link"><b>{props.userData.username}</b></NavLink>
+                </Typography>
+                <NavLink to="/LogOut" style={{ textDecoration: 'none' }}>
+                    <Button
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        LOGOUT
+                    </Button>
+                </NavLink>
+            </>
+            : <>
+                <NavLink to={"/SignUp"} style={{ textDecoration: 'none' }}>
+                    <Button
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        SIGN UP
+                    </Button>
+                </NavLink>
+                <NavLink to="/LogIn" style={{ textDecoration: 'none' }}>
+                    <Button
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        LOGIN
+                    </Button>
+                </NavLink>
+            </>;
+
     return (
         <header>
             <Box sx={{ flexGrow: 1 }}>
@@ -23,14 +53,13 @@ export default function Header(props) {
                         >
                             <TsunamiIcon />
                         </IconButton>
-                        <NavLink to="/" style={{ textDecoration: 'none' }}>
-                            <Typography variant="h6" component="div" sx={{ color: 'white', display: 'block' }}>
+                        <NavLink to="/" className="link" >
+                            <Typography variant="h6" component="div" sx={{ mr: 2 }}>
                                 {props.title}
                             </Typography>
                         </NavLink>
                         <MenuBar />
-                        <Button color="inherit" variant="text">Sign Up</Button>
-                        <Button color="inherit" variant="text">Login</Button>
+                        { authenticationItems }
                     </Toolbar>
                 </AppBar>
             </Box>

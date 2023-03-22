@@ -23,18 +23,6 @@
     min-width: 320px;
 }
 
-.about {
-    position: relative;
-    display: block;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    padding: 24px;
-    border-radius: 2px;
-    background: #bcc0c0;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
-    font-size: large;
-}
-
 .compass-container {
     position: relative;
 }
@@ -132,4 +120,15 @@ input {
     background-color: lightgray;
     padding: 1px 10px 10px 10px;
     min-height: 80px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.content-wrapper {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    padding: 24px;
 }
