@@ -1,6 +1,9 @@
 package com.codecool.umbrella;
 
+import com.codecool.umbrella.model.ERole;
+import com.codecool.umbrella.model.Role;
 import com.codecool.umbrella.model.WeatherCard;
+import com.codecool.umbrella.model.repository.RoleRepository;
 import com.codecool.umbrella.model.repository.WeatherCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +20,9 @@ public class UmbrellaApplication implements CommandLineRunner {
 
 	@Autowired
 	WeatherCardRepository repo;
+
+	@Autowired
+	RoleRepository roleRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -38,6 +44,9 @@ public class UmbrellaApplication implements CommandLineRunner {
 		amsterdam.setLatitude(52.37403);
 		amsterdam.setLongitude(4.88969);
 		repo.save(amsterdam);
+		roleRepository.save(new Role(1, ERole.ROLE_USER));
+		roleRepository.save(new Role(2, ERole.ROLE_PREMIUM_USER));
+		roleRepository.save(new Role(3, ERole.ROLE_ADMIN));
 	}
 
 }

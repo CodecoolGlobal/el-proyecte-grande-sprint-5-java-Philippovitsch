@@ -20,3 +20,9 @@ spring:
       hibernate:
         format_sql: "true"
         dialect: "org.hibernate.dialect.PostgreSQLDialect"
+
+umbrella:
+  app:
+    jwtCookieName: umbrellaCorporation
+    jwtSecret: 357638792F423F4528482B4B6250655368566D597133743677397A2443264629
+    jwtExpirationMs: 86400000
