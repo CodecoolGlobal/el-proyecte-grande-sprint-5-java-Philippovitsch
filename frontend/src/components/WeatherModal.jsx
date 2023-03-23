@@ -13,7 +13,7 @@ import { ForecastChart } from './ForecastChart';
 
 const TEST_MODE = true;
 
-export default function Modal({ closeModal, locationData, weatherIcon }) {
+export default function WeatherModal({ closeModal, locationData, weatherIcon }) {
   const [funFact, setFunFact] = useState("");
   const [localTime, setLocalTime] = useState("");
 
@@ -54,7 +54,7 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
 
   return (
     <div className="modal" onClick={closeModal}>
-      <div className="modal-content" onClick={(event) => {event.stopPropagation()}} style={{cursor: 'default'}}>
+      <div className="modal-content" onClick={(event) => { event.stopPropagation() }} style={{ cursor: 'default' }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <span className="close" onClick={closeModal}>&times;</span>
@@ -64,19 +64,19 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
           </Grid>
           <Grid item xs={4.3}>
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', marginTop: 0 }}>
-              <ListItemButton style={{cursor: 'default'}}>
+              <ListItemButton style={{ cursor: 'default' }}>
                 <ListItemText><b>Local time: </b>{localTime}</ListItemText>
               </ListItemButton>
-              <ListItemButton style={{cursor: 'default'}}>
+              <ListItemButton style={{ cursor: 'default' }}>
                 <ListItemText><b>Temperature: </b>{locationData.temperature}</ListItemText>
               </ListItemButton>
-              <ListItemButton style={{cursor: 'default'}}>
+              <ListItemButton style={{ cursor: 'default' }}>
                 <ListItemText><b>Weather: </b>{getWeatherState()}</ListItemText>
               </ListItemButton>
-              <ListItemButton style={{cursor: 'default'}}>
+              <ListItemButton style={{ cursor: 'default' }}>
                 <ListItemText><b>Wind direction: </b>{getWindDirection()}</ListItemText>
               </ListItemButton>
-              <ListItemButton style={{cursor: 'default'}}>
+              <ListItemButton style={{ cursor: 'default' }}>
                 <ListItemText><b>Wind speed: </b>{locationData.windSpeed}</ListItemText>
               </ListItemButton>
             </List>
@@ -88,7 +88,7 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
             <Box className="fun-fact">
               <Typography component="div" sx={{ p: 2 }}>
                 <em>Fun fact about <b>{locationData.location} </b>
-                <span style={{ color: "#6F7378" }}>(by OpenAI)</span>:</em><br />
+                  <span style={{ color: "#6F7378" }}>(by OpenAI)</span>:</em><br />
                 {funFact}
               </Typography>
             </Box>
@@ -99,8 +99,8 @@ export default function Modal({ closeModal, locationData, weatherIcon }) {
   )
 }
 
-Modal.propTypes = {
-    closeModal: PropTypes.func.isRequired,
-    locationData: PropTypes.object.isRequired,
-    weatherIcon: PropTypes.string.isRequired,
+WeatherModal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  locationData: PropTypes.object.isRequired,
+  weatherIcon: PropTypes.string.isRequired,
 }
