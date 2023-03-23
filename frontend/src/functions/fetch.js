@@ -1,7 +1,6 @@
 import axios from "axios";
 
 let weatherId = 1;
-let eventId = 1;
 
 const axiosInstance = axios.create({
   withCredentials: true
@@ -24,7 +23,6 @@ export async function fetchWeatherData(location) {
 export async function fetchEventData() {
   const response = await axiosInstance.get(`/api/events`);
   const eventData = response.data;
-  console.log(eventData);
   return eventData;
 }
 
@@ -46,7 +44,7 @@ export async function saveCalendarEvent(calendarEvent) {
 
 export async function fetchCards() {
   const cards = await axiosInstance.get(`http://localhost:8080/api/cards`);
-  const data = await cards.data;
+  const data = cards.data;
   return data;
 }
 
@@ -57,7 +55,7 @@ export async function deleteCard(latitude, longitude) {
 
 export async function fetchDailyData(latitude, longitude, date) {
   const weatherRes = await axiosInstance.get(`api/weather/${latitude},${longitude}/day/${date}`);
-  const weatherData = await weatherRes.data;
+  const weatherData = weatherRes.data;
   return weatherData;
 
 }
@@ -91,6 +89,6 @@ export async function fetchFunFact(locationData, testMode = true) {
 
 export async function fetchData(url) {
   const response = await axiosInstance.get(url);
-  const data = await response.data;
+  const data = response.data;
   return data;
 }

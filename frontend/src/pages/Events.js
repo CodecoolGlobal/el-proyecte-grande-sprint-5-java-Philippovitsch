@@ -7,26 +7,23 @@ export default function Events() {
 
   const [eventCards, setEventCards] = useState([]);
 
+  const fetchData = async () => {
+    const eventCards = await fetchEventData();
+    setEventCards(eventCards);
+  }
+
   useEffect(() => {
     async function loadEventCards() {
-      // if (!userData) {
-      //     return;
-      // }
-
-      const eventCards = await fetchEventData();
-      setEventCards(eventCards);
-
+      fetchData();
     };
     loadEventCards();
-  }, [eventCards]);
+  }, []);
 
 
-  const addCalendarEvent = (calendarEvent) => {
-
+  const addCalendarEvent = async (calendarEvent) => {
     const newEvent = {
       name: calendarEvent.name,
     }
-
     async function handleSaving() {
       const response = await saveCalendarEvent(newEvent);
       if (response === 200) {
@@ -35,7 +32,8 @@ export default function Events() {
       };
     }
 
-    handleSaving();
+    await handleSaving();
+    fetchData();
   }
 
   const [sucessMessage, setSuccessMessage] = useState("");
