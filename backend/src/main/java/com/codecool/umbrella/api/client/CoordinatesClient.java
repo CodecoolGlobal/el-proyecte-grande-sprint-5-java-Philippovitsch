@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 public class CoordinatesClient {
 
     private final String geocodingApi;
-    private WebClientService webClientService;
+    private final WebClientService webClientService;
 
     public CoordinatesClient(@Value("${api.geocoding}") String geocodingApi, WebClientService webClientService) {
         this.geocodingApi = geocodingApi;

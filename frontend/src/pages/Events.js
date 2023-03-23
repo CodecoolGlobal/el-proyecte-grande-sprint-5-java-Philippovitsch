@@ -2,10 +2,13 @@ import Calendar from "../components/Calendar";
 import { useState, useEffect } from "react";
 import EventCards from "../components/EventCards";
 import { saveCalendarEvent, fetchEventData } from "../functions/fetch";
+import { Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export default function Events() {
-
   const [eventCards, setEventCards] = useState([]);
+
+  const user = localStorage.getItem("user");
 
   const fetchData = async () => {
     const eventCards = await fetchEventData();
@@ -14,7 +17,9 @@ export default function Events() {
 
   useEffect(() => {
     async function loadEventCards() {
-      fetchData();
+      if (user !== null) {
+        fetchData();
+      }
     };
     loadEventCards();
   }, []);
@@ -28,7 +33,7 @@ export default function Events() {
       const response = await saveCalendarEvent(newEvent);
       if (response === 200) {
         setSuccessMessage("Successfully saved Event!");
-        setSucessOpen(true);
+        setSuccessOpen(true);
       };
     }
 
@@ -36,13 +41,24 @@ export default function Events() {
     fetchData();
   }
 
-  const [sucessMessage, setSuccessMessage] = useState("");
-  const [sucessOpen, setSucessOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [successOpen, setSuccessOpen] = useState(false);
 
   return (
-    <div className="cardwrapper">
-      <Calendar displayModal={true} addCalendarEvent={addCalendarEvent} />
-      <EventCards eventCards={eventCards} />
+    <div className="event-wrapper">
+      {user &&
+        <>
+          <Calendar displayModal={true} addCalendarEvent={addCalendarEvent} />
+          <EventCards eventCards={eventCards} />
+        </>
+      }
+      {!user &&
+        <Typography
+          variant="h4"
+          sx={{ color: "white" }}
+        >
+          Please <NavLink style={{ color: "white" }} to="/LogIn">log in</NavLink> to see events!
+        </Typography>}
     </div>
   )
 }

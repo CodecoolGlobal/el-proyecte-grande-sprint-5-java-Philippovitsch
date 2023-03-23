@@ -7,7 +7,6 @@ import com.codecool.umbrella.model.repository.WeatherCardRepository;
 import com.codecool.umbrella.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

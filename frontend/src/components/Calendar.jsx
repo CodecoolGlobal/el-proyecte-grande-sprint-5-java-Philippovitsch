@@ -26,7 +26,7 @@ export default function Calendar({ displayModal, addCalendarEvent }) {
     <div>
       <Card sx={{ pt: 3.5, pr: 3.5, pl: 3.5 }}>
         <CardContent>
-          <Typography className="location"
+          <Typography
             variant="body1"
             sx={{ textAlign: 'center' }}>
             Event Calendar

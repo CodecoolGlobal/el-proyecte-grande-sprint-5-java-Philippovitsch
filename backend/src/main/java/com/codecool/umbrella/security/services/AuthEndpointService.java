@@ -12,7 +12,7 @@ import com.codecool.umbrella.security.payload.response.MessageResponse;
 import com.codecool.umbrella.security.payload.response.UserInfoResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -94,20 +93,21 @@ public class AuthEndpointService {
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "premium":
+                    case "premium" -> {
                         Role premiumRole = roleRepository.findByName(ERole.ROLE_PREMIUM_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
                         roles.add(premiumRole);
-                        break;
-                    case "admin":
+                    }
+                    case "admin" -> {
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
                         roles.add(adminRole);
-                        break;
-                    default:
+                    }
+                    default -> {
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
+                    }
                 }
             });
         }

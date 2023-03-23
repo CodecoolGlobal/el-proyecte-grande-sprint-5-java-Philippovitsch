@@ -4,10 +4,7 @@ import com.codecool.umbrella.model.WeatherCard;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface WeatherCardRepository extends JpaRepository<WeatherCard, Long> {
-
 
 }

@@ -174,3 +174,45 @@ input {
     height: 150px;
     opacity: 1;
 }
+
+.event-wrapper {
+    position: relative;
+    margin-top: 8px;
+    scroll-behavior: smooth;
+    overflow: auto;
+    display: flex;
+    gap: 30px;
+    padding: 24px;
+    background: linear-gradient(310deg, rgb(20, 23, 39), rgb(58, 65, 111));
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    height: 426px;
+}
+
+.event-cards {
+    display: inline-grid;
+    column-gap: 10px;
+    row-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: auto;
+}
+
+/* Custom scrollbar for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(58, 65, 111) rgb(20, 23, 39);
+}
+
+/* Custom scrollbar for Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(20, 23, 39);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(58, 65, 111);
+  border-radius: 20px;
+  border: 3px solid rgb(20, 23, 39);
+}

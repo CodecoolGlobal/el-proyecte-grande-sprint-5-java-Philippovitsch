@@ -3,7 +3,6 @@ package com.codecool.umbrella.api.endpoint;
 import com.codecool.umbrella.api.dto.CoordinatesDTO;
 import com.codecool.umbrella.logic.CoordinatesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -5,7 +5,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 export default function EventCards({ eventCards }) {
   return (
-    <div className="cardwrapper">
+    <div className="event-cards">
       {eventCards.length === 0 &&
         <Box sx={{ width: '100%' }}>
           <LinearProgress />
