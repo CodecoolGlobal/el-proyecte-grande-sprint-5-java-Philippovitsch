@@ -9,4 +9,6 @@ public interface WeatherCardRepository extends JpaRepository<WeatherCard, Long> 
 
     WeatherCard findWeatherCardByLatitudeAndLongitude(double Latitude, double Longitude);
 
+    boolean existsByLatitudeAndLongitude(double Latitude, double Longitude);
+
 }

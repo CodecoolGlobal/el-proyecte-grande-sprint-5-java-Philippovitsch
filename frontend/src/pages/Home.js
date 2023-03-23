@@ -44,8 +44,8 @@ export default function Home({userData}) {
 
     const alreadyExists = (location) => {
         return defaultLocations.filter(defaultLocation =>
-            defaultLocation.latitude === location.latitude &&
-            defaultLocation.longitude === location.longitude
+            defaultLocation.latitude === parseFloat(location.latitude) &&
+            defaultLocation.longitude === parseFloat(location.longitude)
         ).length > 0
     }
 

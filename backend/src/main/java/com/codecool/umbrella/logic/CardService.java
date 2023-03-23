@@ -18,11 +18,16 @@ public class CardService {
     }
 
     public void saveWeatherCard(WeatherCard card) {
+        if (cardRepository.existsByLatitudeAndLongitude(card.getLatitude(), card.getLongitude())) {
+            return;
+        }
+
         cardRepository.save(card);
     }
 
     public void removeWeatherCard(double latitude, double longitude) {
         WeatherCard card = cardRepository.findWeatherCardByLatitudeAndLongitude(latitude, longitude);
+
         if (card != null) {
             cardRepository.delete(card);
         }
