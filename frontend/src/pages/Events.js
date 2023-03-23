@@ -1,23 +1,50 @@
 import Calendar from "../components/Calendar";
-import CalendarWeatherDetail from "../components/CalendarWeatherDetail";
-import { useState } from "react";
-import { fetchDailyData } from "../functions/fetch";
+import { useState, useEffect } from "react";
+import EventCards from "../components/EventCards";
+import { saveCalendarEvent, fetchEventData } from "../functions/fetch";
 
 export default function Events() {
-  async function handleCalendarClick(value, selectionState) {
-    const latitudeVienna = 48.210033;
-    const longitudeVienna = 16.363449;
-    const day = String(value.$D).length === 1 ? `0${value.$D}` : `${value.$D}`;
-    const month = String(value.$M).length === 1 ? `0${value.$M+1}` : `${value.$M+1}`;
-    const date = `${value.$y}-${month}-${day}`
-    setWeatherData(await fetchDailyData(latitudeVienna, longitudeVienna, date));
+
+  const [eventCards, setEventCards] = useState([]);
+
+  useEffect(() => {
+    async function loadEventCards() {
+      // if (!userData) {
+      //     return;
+      // }
+
+      const eventCards = await fetchEventData();
+      setEventCards(eventCards);
+
+    };
+    loadEventCards();
+  }, [eventCards]);
+
+
+  const addCalendarEvent = (calendarEvent) => {
+
+    const newEvent = {
+      name: calendarEvent.name,
+    }
+
+    async function handleSaving() {
+      const response = await saveCalendarEvent(newEvent);
+      if (response === 200) {
+        setSuccessMessage("Successfully saved Event!");
+        setSucessOpen(true);
+      };
+    }
+
+    handleSaving();
   }
-  const [weatherData, setWeatherData] = useState();
+
+  const [sucessMessage, setSuccessMessage] = useState("");
+  const [sucessOpen, setSucessOpen] = useState(false);
 
   return (
     <div className="cardwrapper">
-      <Calendar handleCalendarClick={handleCalendarClick}/>
-      <CalendarWeatherDetail weatherData={weatherData}/>
+      <Calendar displayModal={true} addCalendarEvent={addCalendarEvent} />
+      <EventCards eventCards={eventCards} />
     </div>
   )
 }
