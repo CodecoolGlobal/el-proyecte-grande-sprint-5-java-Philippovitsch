@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Snackbar, Alert } from "@mui/material";
-import AddLocation from "../components/AddLocation";
+import { Snackbar, Alert, Typography } from "@mui/material";
 import WeatherCards from "../components/WeatherCards";
 import { fetchCoordinates, fetchWeatherData, saveCard, fetchCards, deleteCard } from "../functions/fetch";
+import { NavLink } from "react-router-dom";
 
 
 export default function Home({userData}) {
@@ -66,7 +66,7 @@ export default function Home({userData}) {
             const response = await saveCard(newLocation);
             if (response === 200) {
                 setSuccessMessage("Successfully saved card!");
-                setSucessOpen(true);
+                setSuccessOpen(true);
             };
         }
 
@@ -81,20 +81,20 @@ export default function Home({userData}) {
             const response = await deleteCard(latitude, longitude);
             if (response === 200) {
                 setSuccessMessage("Successfully deleted card!");
-                setSucessOpen(true);
+                setSuccessOpen(true);
             };
         }
         handleDeletion();
     }
 
-    const [sucessMessage, setSuccessMessage] = useState("");
-    const [sucessOpen, setSucessOpen] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [successOpen, setSuccessOpen] = useState(false);
 
     const handleCloseSnack = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setSucessOpen(false);
+        setSuccessOpen(false);
     };
 
 
@@ -102,14 +102,31 @@ export default function Home({userData}) {
         <div className='App'>
             { userData &&
             <>
-                <AddLocation fetchLocations={fetchLocations} addLocation={addLocation} />
-                <WeatherCards weatherCards={weatherCards} handleCloseClick={handleCloseClick} />
-                <Snackbar open={sucessOpen} autoHideDuration={6000} onClose={handleCloseSnack}>
+                <WeatherCards
+                    weatherCards={weatherCards}
+                    handleCloseClick={handleCloseClick}
+                    fetchLocations={fetchLocations}
+                    addLocation={addLocation}
+                />
+                <Snackbar open={successOpen} autoHideDuration={6000} onClose={handleCloseSnack}>
                     <Alert onClose={handleCloseSnack} variant="filled" severity="success" sx={{ width: '100%' }}>
-                        {sucessMessage}
+                        {successMessage}
                     </Alert>
                 </Snackbar>
             </>
+            }
+            { !userData &&
+            <div className="content-wrapper" style={{ position: "relative", marginTop: "30px", marginLeft: "20px" }}>
+                <div style={{ marginLeft: "150px" }}>
+                    <Typography gutterBottom variant="h4" component="div">
+                        Welcome to WeatherTracker
+                    </Typography>
+                    <Typography>
+                        Please <NavLink to="/SignUp">sign up</NavLink> or <NavLink to="/LogIn">login</NavLink> to continue.
+                    </Typography>
+                </div>
+                <img className="logo" src="logo.png" alt="logo"></img>
+            </div>
             }
         </div>
     );

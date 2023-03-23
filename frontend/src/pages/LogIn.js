@@ -5,12 +5,15 @@ import { Alert, Button, Typography } from '@mui/material';
 import { useState } from 'react';
 
 import { logIn } from '../functions/authentication';
+import { useNavigate } from 'react-router-dom';
 
 export default function LogIn({setUser}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [severity, setSeverity] = useState("info");
   const [loginMessage, setLoginMessage] = useState(null);
+
+  const navigate = useNavigate();
 
   const changeUsername = (event) => {
     setUsername(event.target.value);
@@ -19,6 +22,14 @@ export default function LogIn({setUser}) {
   const changePassword = (event) => {
     setPassword(event.target.value);
   };
+
+  const redirectUser = () => {
+    setTimeout(() => {
+      if (window.location.pathname === "/LogIn") {
+        navigate("/")
+      }
+    }, 2000)
+  }
 
   const performLogIn = async () => {
     const userData = {
@@ -30,7 +41,8 @@ export default function LogIn({setUser}) {
     if (response.status === 200) {
       setUser(response.userData);
       setSeverity("success");
-      setLoginMessage("Login successful!")
+      setLoginMessage("Login successful!");
+      redirectUser();
     } else {
       setSeverity("error");
       setLoginMessage(`${response.error}: ${response.message}`);

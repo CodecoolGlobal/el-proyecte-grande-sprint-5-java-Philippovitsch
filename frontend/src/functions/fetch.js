@@ -22,7 +22,6 @@ export async function fetchWeatherData(location) {
 
 export async function fetchCoordinates(location) {
   const coordinatesRes = await axiosInstance.get(`/api/coordinates/${location}`);
-  console.log(coordinatesRes);
   const data = coordinatesRes.data;
   return (data) ? data : [];
 }

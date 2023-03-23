@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { OutlinedInput } from "@mui/material";
 import LocationDropDown from './LocationDropDown';
 
-export default function AddLocation({ fetchLocations, addLocation }) {
+export default function AddLocation({ fetchLocations, addLocation, toggleSearchField }) {
 const [showDropDown, setShowDropDown] = useState(false);
 const [locations, setLocations] = useState([]);
 
@@ -19,6 +19,7 @@ const [locations, setLocations] = useState([]);
 
   const onAdd = (location) => {
     addLocation(location, setShowDropDown);
+    toggleSearchField(false);
   }
 
   document.onkeydown = (event) => {
