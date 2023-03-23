@@ -4,11 +4,13 @@ import Grid from '@mui/material/Grid';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { TextField } from '@mui/material';
+import { Button } from '@mui/material';
 
-import { useEffect, useState } from 'react';
-import { createEvent } from '@testing-library/react';
+import { useState } from 'react';
 
-export default function EventModal({ closeModal }) {
+export default function EventModal({ closeModal, addCalendarEvent }) {
+    const [eventname, setEventname] = useState("");
+
 
     document.onkeydown = (event) => {
         if (event.code === "Escape") {
@@ -16,11 +18,16 @@ export default function EventModal({ closeModal }) {
         }
     };
 
-    const [eventname, setEventname] = useState("");
-
-    const createEvent = (event) => {
+    const changeEventname = (event) => {
         setEventname(event.target.value);
     };
+
+    const onAdd = async () => {
+        const calendarEvent = {
+            name: eventname
+        }
+        addCalendarEvent(calendarEvent);
+    }
 
     return (
         <div className="modal" onClick={closeModal}>
@@ -47,13 +54,15 @@ export default function EventModal({ closeModal }) {
                                 <TextField
                                     required
                                     focused
-                                    id="eventname"
+                                    id="eventName"
                                     label="Event"
                                     type="text"
                                     helperText="Please enter an Event."
                                     InputProps={{ sx: { width: 500 } }}
-                                    onChange={createEvent}
+                                    onChange={changeEventname}
                                 />
+                                <br />
+                                <Button variant="contained" onClick={onAdd} sx={{ marginTop: 3 }}>SUBMIT</Button>
                             </div>
                         </Box>
                     </div>

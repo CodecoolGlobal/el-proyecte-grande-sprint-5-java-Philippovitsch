@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import EventModal from './EventModal'
 
-export default function Calendar({ displayModal }) {
+export default function Calendar({ displayModal, addCalendarEvent }) {
   const [showModal, setShowModal] = useState(false);
 
   const adapter = new AdapterDayjs();
@@ -36,7 +36,7 @@ export default function Calendar({ displayModal }) {
           </LocalizationProvider>
         </CardContent>
       </Card>
-      {(showModal && displayModal) && <EventModal closeModal={closeModal} />}
+      {(showModal && displayModal) && <EventModal closeModal={closeModal} addCalendarEvent={addCalendarEvent} />}
     </div>
   )
 }
