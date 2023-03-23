@@ -7,8 +7,11 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,6 +47,12 @@ public class User {
                         joinColumns = @JoinColumn(name = "user_id"),
                         inverseJoinColumns = @JoinColumn(name = "role_id"))
         private Set<Role> roles = new HashSet<>();
+
+        @OneToMany(fetch = FetchType.EAGER)
+        @JoinTable(name = "user_cards",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "card_id"))
+        private List<WeatherCard> weatherCards = new ArrayList<>();
 
         public User(String username, String email, String password) {
                 this.username = username;

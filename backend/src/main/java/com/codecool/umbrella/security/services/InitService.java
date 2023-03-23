@@ -8,9 +8,11 @@ import com.codecool.umbrella.model.repository.RoleRepository;
 import com.codecool.umbrella.model.repository.UserRepository;
 import com.codecool.umbrella.model.repository.WeatherCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -50,7 +52,10 @@ public class InitService {
         userRepo.save(admin);
     }
 
+    @Lazy
     public void createWeatherCards() {
+        Optional<User> optionalUser = userRepo.findByUsername("User");
+
         WeatherCard vienna = new WeatherCard();
         vienna.setName("Vienna");
         vienna.setCountry("Austria");
@@ -71,6 +76,13 @@ public class InitService {
         amsterdam.setLatitude(52.37403);
         amsterdam.setLongitude(4.88969);
         weatherCardRepo.save(amsterdam);
+
+        if (optionalUser.isPresent()) {
+            optionalUser.get().getWeatherCards().add(vienna);
+            optionalUser.get().getWeatherCards().add(paris);
+            optionalUser.get().getWeatherCards().add(amsterdam);
+            userRepo.save(optionalUser.get());
+        }
     }
 
 }

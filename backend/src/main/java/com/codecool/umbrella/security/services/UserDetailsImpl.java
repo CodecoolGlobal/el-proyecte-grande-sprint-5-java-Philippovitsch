@@ -1,6 +1,7 @@
 package com.codecool.umbrella.security.services;
 
 import com.codecool.umbrella.model.User;
+import com.codecool.umbrella.model.WeatherCard;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
