@@ -21,7 +21,7 @@ export default function App() {
         <Route path="/" element={<Home userData = {user} />} />
         <Route path="/About" element={<About />} />
         <Route path="/Events" element={<Events />} />
-        <Route path="/Administration" element={<Administration />} />
+        <Route path="/Administration" element={<Administration userData = {user} />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/LogIn" element={<LogIn setUser={setUser} />} />
         <Route path="/LogOut" element={<LogOut setUser={setUser} />} />
