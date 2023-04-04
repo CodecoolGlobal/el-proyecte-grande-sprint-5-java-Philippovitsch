@@ -69,6 +69,8 @@ public class WebSecurityConfig {
                     .permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/location/**")
                     .permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/admin/**")
+                    .hasRole("ADMIN")
                 .anyRequest()
                     .authenticated();
 

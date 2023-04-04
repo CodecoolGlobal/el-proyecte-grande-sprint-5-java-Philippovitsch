@@ -1,33 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TableContainer } from "@mui/material";
 import { Table, TableHead, TableRow, TableCell, Paper, TableBody } from "@mui/material";
+import { fetchData } from '../functions/fetch';
 
 export default function UsersTable() {
+    useEffect(() => {
+        async function fetchUsers() {
+            const fetchedUsers = await fetchData("/api/admin");
+            setUsers(fetchedUsers);
+        }
+        fetchUsers()
+    }, [])
+
+    const [users, setUsers] = useState([]);
+    console.log(users);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Username</TableCell>
-            <TableCell align="right">E-Mail</TableCell>
-            <TableCell align="right">Role</TableCell>
+            <TableCell align="left">E-Mail</TableCell>
+            <TableCell align="left">Role</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
+          {users.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="left">{row.username}</TableCell>
+              <TableCell align="left">{row.email}</TableCell>
+              <TableCell align="left">{row.roles[0].name}</TableCell>
             </TableRow>
-          ))} */}
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
