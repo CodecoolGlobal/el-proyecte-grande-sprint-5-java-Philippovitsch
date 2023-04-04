@@ -1,4 +1,4 @@
-package com.codecool.umbrella.security.services;
+package com.codecool.umbrella.logic;
 
 import com.codecool.umbrella.model.ERole;
 import com.codecool.umbrella.model.Role;

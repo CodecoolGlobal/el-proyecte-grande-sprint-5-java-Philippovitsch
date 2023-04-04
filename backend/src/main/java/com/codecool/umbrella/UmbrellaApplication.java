@@ -1,6 +1,6 @@
 package com.codecool.umbrella;
 
-import com.codecool.umbrella.security.services.InitService;
+import com.codecool.umbrella.logic.InitService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
