@@ -22,27 +22,20 @@ export default function Events() {
       }
     };
     loadEventCards();
-  }, []);
+  }, [user]);
 
 
   const addCalendarEvent = async (calendarEvent) => {
-    const newEvent = {
-      name: calendarEvent.name,
-    }
     async function handleSaving() {
-      const response = await saveCalendarEvent(newEvent);
+      const response = await saveCalendarEvent(calendarEvent);
       if (response === 200) {
-        setSuccessMessage("Successfully saved Event!");
-        setSuccessOpen(true);
+        console.log("Successfully saved Event!");
       };
     }
 
     await handleSaving();
     fetchData();
   }
-
-  const [successMessage, setSuccessMessage] = useState("");
-  const [successOpen, setSuccessOpen] = useState(false);
 
   return (
     <div className="event-wrapper">

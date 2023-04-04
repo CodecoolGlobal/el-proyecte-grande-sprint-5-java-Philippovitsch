@@ -7,7 +7,6 @@ import WeatherModal from "./WeatherModal";
 const BACKEND_URL = process.env.PUBLIC_URL;
 const COMPASS_ICON = "/symbols/modern_compass_without_needle.svg"
 const ARROW_ICON = "/symbols/arrow.svg"
-const WIND_ICON = "/symbols/wind.svg"
 const WEATHER_ICONS = {
   0: "/symbols/clear.svg",
   1: "/symbols/mainly_clear.svg",
@@ -39,7 +38,10 @@ const WEATHER_ICONS = {
   99: "/symbols/thunderstorm_heavy_hail.svg",
   unknown: "/symbols/unknown.png"
 };
-const getWeatherIcon = (weatherCode) => {
+
+export const WIND_ICON = "/symbols/wind.svg";
+
+export const getWeatherIcon = (weatherCode) => {
   return (weatherCode in WEATHER_ICONS) ? WEATHER_ICONS[weatherCode] : WEATHER_ICONS.unknown;
 }
 
@@ -137,6 +139,5 @@ export default function WeatherCard({ card, handleCloseClick, displayModal }) {
 
 WeatherCard.propTypes = {
   card: PropTypes.object.isRequired,
-  handleCloseClick: PropTypes.func.isRequired,
   displayModal: PropTypes.bool.isRequired
 }

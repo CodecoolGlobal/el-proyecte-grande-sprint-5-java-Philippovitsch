@@ -9,12 +9,14 @@ import EventModal from './EventModal'
 
 export default function Calendar({ displayModal, addCalendarEvent }) {
   const [showModal, setShowModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState();
 
   const adapter = new AdapterDayjs();
   const twoWeeksInMs = 12096e5;
   const maxDate = adapter.date(Date.now() + twoWeeksInMs);
 
-  const openModal = () => {
+  const openModal = (event) => {
+    setSelectedDate(new Date(event));
     setShowModal(true);
   }
 
@@ -32,11 +34,14 @@ export default function Calendar({ displayModal, addCalendarEvent }) {
             Event Calendar
           </Typography>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateCalendar disablePast maxDate={maxDate} onChange={openModal} />
+            <DateCalendar
+              disablePast
+              maxDate={maxDate}
+              onChange={openModal} />
           </LocalizationProvider>
         </CardContent>
       </Card>
-      {(showModal && displayModal) && <EventModal closeModal={closeModal} addCalendarEvent={addCalendarEvent} />}
+      {(showModal && displayModal) && <EventModal closeModal={closeModal} addCalendarEvent={addCalendarEvent} date={selectedDate} />}
     </div>
   )
 }
