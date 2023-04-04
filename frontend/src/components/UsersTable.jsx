@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { TableContainer } from "@mui/material";
 import { Table, TableHead, TableRow, TableCell, Paper, TableBody } from "@mui/material";
 import { fetchData } from '../functions/fetch';
+import { Button } from '@mui/material';
 
 export default function UsersTable() {
     useEffect(() => {
@@ -23,6 +24,7 @@ export default function UsersTable() {
             <TableCell>Username</TableCell>
             <TableCell align="left">E-Mail</TableCell>
             <TableCell align="left">Role</TableCell>
+            <TableCell align="left">Administration</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -34,6 +36,10 @@ export default function UsersTable() {
               <TableCell align="left">{row.username}</TableCell>
               <TableCell align="left">{row.email}</TableCell>
               <TableCell align="left">{row.roles[0].name}</TableCell>
+              <TableCell align="left">
+                <Button variant="text"
+                        onClick={() => { alert('clicked'); }}>Delete</Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
