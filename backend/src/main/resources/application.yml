@@ -1,0 +1,28 @@
+api:
+  geocoding: "https://geocoding-api.open-meteo.com/v1/search"
+  weather: "https://api.open-meteo.com/v1/forecast"
+  weatherForecast: "https://api.open-meteo.com/v1/forecast?hourly=temperature_2m&hourly=windspeed_10m&hourly=rain"
+  reverseGeocoding: "https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&accept-language=en"
+  time: "https://www.timeapi.io/api/Time/current/coordinate"
+  weatherForecastSpecificDay: "https://api.open-meteo.com/v1/forecast?daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Europe/Berlin"
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/umbrella"
+    username: ${USERNAME}
+    password: ${PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: "create-drop"
+
+    show-sql: "true"
+    properties:
+      hibernate:
+        format_sql: "true"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+
+umbrella:
+  app:
+    jwtCookieName: umbrellaCorporation
+    jwtSecret: 357638792F423F4528482B4B6250655368566D597133743677397A2443264629
+    jwtExpirationMs: 86400000
