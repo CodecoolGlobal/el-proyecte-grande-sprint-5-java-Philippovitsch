@@ -39,6 +39,7 @@ export default function Header(props) {
                 </NavLink>
             </>;
 
+
     return (
         <header>
             <Box sx={{ flexGrow: 1 }}>
@@ -58,7 +59,7 @@ export default function Header(props) {
                                 {props.title}
                             </Typography>
                         </NavLink>
-                        <MenuBar />
+                        <MenuBar userData = { props.userData }/>
                         { authenticationItems }
                     </Toolbar>
                 </AppBar>

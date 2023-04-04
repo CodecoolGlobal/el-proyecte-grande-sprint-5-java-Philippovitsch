@@ -7,6 +7,7 @@ import Events from './pages/Events';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import LogOut from './pages/LogOut';
+import Administration from './pages/Administration';
 import { useState } from 'react';
 import UserDetails from './components/UserDetails';
 
@@ -15,11 +16,12 @@ export default function App() {
 
   return (
     <>
-      <Header title='WeatherTracker' userData={user} />
+      <Header title='WeatherTracker' userData = {user} />
       <Routes>
         <Route path="/" element={<Home userData = {user} />} />
         <Route path="/About" element={<About />} />
         <Route path="/Events" element={<Events />} />
+        <Route path="/Administration" element={<Administration />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/LogIn" element={<LogIn setUser={setUser} />} />
         <Route path="/LogOut" element={<LogOut setUser={setUser} />} />

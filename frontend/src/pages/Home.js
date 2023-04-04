@@ -9,6 +9,7 @@ export default function Home({userData}) {
     useEffect(() => {
         async function setLocationsAtStart() {
             if (!userData) {
+                console.log("not existing")
                 return;
             }
             const startLocations = await fetchCards();
@@ -97,6 +98,7 @@ export default function Home({userData}) {
         setSuccessOpen(false);
     };
 
+    console.log(userData);
 
     return (
         <div className='App'>

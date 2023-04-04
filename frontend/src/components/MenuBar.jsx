@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 const pages = ['Events', 'About'];
 
-export default function ResponsiveAppBar() {
+export default function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -21,7 +21,8 @@ export default function ResponsiveAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  console.log(props.userData)
+  console.log(props.userData === null)
   return (
     <>
       <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -71,6 +72,16 @@ export default function ResponsiveAppBar() {
             </Button>
           </NavLink>
         ))}
+        { props.userData != null && props.userData.roles.includes('ROLE_ADMIN') &&
+          <NavLink to={"/administration"} style={{ textDecoration: 'none' }}>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Administration
+            </Button>
+          </NavLink>
+        }
       </Box>
     </>
   );
