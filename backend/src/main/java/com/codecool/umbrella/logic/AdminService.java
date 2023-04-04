@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminService {
@@ -16,6 +17,11 @@ public class AdminService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public void removeUser(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        user.ifPresent(presentUser -> userRepository.delete(presentUser));
     }
 
 }
