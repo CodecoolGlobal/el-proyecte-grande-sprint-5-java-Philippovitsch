@@ -49,7 +49,7 @@ export default function Home({userData}) {
         ).length > 0
     }
 
-    const addLocation = (location, setShowDropDown) => {
+    const addLocation = async (location, setShowDropDown) => {
         if (alreadyExists(location)) {
             console.log("Location already exists!");
             return;
@@ -58,8 +58,8 @@ export default function Home({userData}) {
         const newLocation = {
             name: location.name,
             country: location.country,
-            latitude: location.latitude,
-            longitude: location.longitude
+            latitude: parseFloat(location.latitude),
+            longitude: parseFloat(location.longitude)
         }
 
         async function handleSaving() {
@@ -70,7 +70,7 @@ export default function Home({userData}) {
             };
         }
 
-        handleSaving();
+        await handleSaving();
         setDefaultLocations([...defaultLocations, newLocation]);
         setShowDropDown(false);
     }
