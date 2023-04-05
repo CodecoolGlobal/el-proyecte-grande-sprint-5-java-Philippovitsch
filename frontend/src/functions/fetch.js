@@ -88,7 +88,12 @@ export async function fetchFunFact(locationData, testMode = true) {
 }
 
 export async function removeUser(username) {
-  const response = await axiosInstance.delete(`http://localhost:8080/api/admin/delete/${username}`);
+  const response = await axiosInstance.delete(`http://localhost:8080/api/admin/${username}/delete`);
+  return response.status;
+}
+
+export async function changeUserRole(username, newRole) {
+  const response = await axiosInstance.put(`http://localhost:8080/api/admin/${username}/role/${newRole}`);
   return response.status;
 }
 

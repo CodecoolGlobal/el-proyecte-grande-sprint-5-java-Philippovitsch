@@ -1,14 +1,20 @@
 import React from 'react'
 import { useState } from 'react';
 import { Typography, FormLabel, RadioGroup, FormControl, FormControlLabel, Radio, Grid, Box, Button } from '@mui/material'
+import { changeUserRole } from '../functions/fetch';
 
-export default function RoleManagementModal({ closeModal, userToEditRole, oldRole }) {
+export default function RoleManagementModal({ closeModal, userToEditRole, oldRole, fetchUsers, setSuccessMessage, setSuccessOpen }) {
 
     const [newRole, setNewRole] = useState(oldRole);
 
-    function changeUserRoleHandler(userToEditRole, newRole) {
-        // await removeUser(username);
-        console.log(userToEditRole + " " + newRole)
+    async function changeUserRoleHandler(userToEditRole, newRole) {
+        const response = await changeUserRole(userToEditRole, newRole);
+        if (response === 200) {
+            closeModal();
+            fetchUsers();
+            setSuccessMessage('Successfully changed Role.');
+            setSuccessOpen(true);
+        }
     }
 
   return (
@@ -30,7 +36,7 @@ export default function RoleManagementModal({ closeModal, userToEditRole, oldRol
                         <FormLabel id="role-radio-label">Choose role:</FormLabel>
                             <RadioGroup
                                 aria-labelledby="role-radio-label"
-                                defaultValue="user"
+                                defaultValue={oldRole}
                                 name="radio-buttons-group"
                                 onChange={(event) => setNewRole(event.target.value)}
                             >

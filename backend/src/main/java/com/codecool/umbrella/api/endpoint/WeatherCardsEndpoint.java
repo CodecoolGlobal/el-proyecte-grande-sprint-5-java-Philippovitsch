@@ -2,7 +2,10 @@ package com.codecool.umbrella.api.endpoint;
 
 import com.codecool.umbrella.logic.CardService;
 import com.codecool.umbrella.model.WeatherCard;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +24,13 @@ public class WeatherCardsEndpoint {
     }
 
     @PostMapping
-    public void saveWeatherCard(@RequestBody WeatherCard card) {
-        cardService.saveWeatherCard(card);
+    public ResponseEntity<String> saveWeatherCard(@RequestBody WeatherCard card) {
+        try {
+            cardService.saveWeatherCard(card);
+            return new ResponseEntity<>("Successfully saved Weather Card.", HttpStatus.OK);
+        } catch (ObjectNotFoundException exception) {
+            return new ResponseEntity<>("Didn't find user.", HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/delete/{latitude},{longitude}")

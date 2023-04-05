@@ -1,22 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { TableContainer } from "@mui/material";
 import { Table, TableHead, TableRow, TableCell, Paper, TableBody } from "@mui/material";
 import { fetchData } from '../functions/fetch';
 import { Button } from '@mui/material';
+import { Snackbar, Alert } from '@mui/material';
 import { removeUser } from '../functions/fetch';
 import RoleManagementModal from './RoleManagementModal';
 
-export default function UsersTable() {
+export default function UsersTable({userData}) {
 
     const [users, setUsers] = useState([]);
-    const [deleteCounter, setDeleteCounter] = useState(0);
     const [openModal, setOpenModal] = useState(false);
     const [userToEditRole, setUserToEditRole] = useState('');
     const [oldRoleOfUserToEdit, setOldRoleOfUserToEdit] = useState('')
 
+    const [successMessage, setSuccessMessage] = useState("");
+    const [successOpen, setSuccessOpen] = useState(false);
+
+    const handleCloseSnack = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSuccessOpen(false);
+    };
+
     async function removeUserHandler(username) {
-        await removeUser(username);
-        setDeleteCounter(deleteCounter+1);
+        const response = await removeUser(username);
+        if (response === 200) {
+            setSuccessMessage('User successfully deleted from Database.')
+            setSuccessOpen(true);
+        }
+        fetchUsers();
     }
 
     function removeRole_Prefix(fetchedUsers) {
@@ -25,14 +39,13 @@ export default function UsersTable() {
         });
     }
 
-    useEffect(() => {
-        async function fetchUsers() {
-            const fetchedUsers = await fetchData("/api/admin");
-            removeRole_Prefix(fetchedUsers);
-            setUsers(fetchedUsers);
-        }
-        fetchUsers();
-    }, [deleteCounter])
+    async function fetchUsers() {
+        const fetchedUsers = await fetchData("/api/admin");
+        removeRole_Prefix(fetchedUsers);
+        setUsers(fetchedUsers);
+    }
+    fetchUsers();
+
 
     const closeModal = () => {
         setOpenModal(false);
@@ -60,16 +73,24 @@ export default function UsersTable() {
                     <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">{row.roles[0].name}</TableCell>
                     <TableCell align="left">
-                        <Button variant="text"
+                        {row.username !== userData.username && <Button variant="text"
                                 onClick={() => { 
                                     removeUserHandler(row.username);
                                     }}>Delete</Button>
-                        <Button variant="text"
+                        }
+                        {row.username !== userData.username && <Button variant="text"
                                 onClick={() => { 
                                     setUserToEditRole(row.username);
                                     setOldRoleOfUserToEdit(row.roles[0].name)
                                     setOpenModal(true);
                                     }}>Change Role</Button>
+                        }
+                        {row.username === userData.username && 
+                        <Button variant="text" disabled>Delete</Button>
+                        }
+                        {row.username === userData.username && 
+                        <Button variant="text" disabled>Change Role</Button>
+                        }
                     </TableCell>
                     </TableRow>
                 ))}
@@ -78,11 +99,19 @@ export default function UsersTable() {
         </TableContainer>
         {openModal && 
             <RoleManagementModal 
-                closeModal={closeModal}
-                userToEditRole={userToEditRole} 
+                closeModal= {closeModal}
+                userToEditRole= {userToEditRole} 
                 oldRole = {oldRoleOfUserToEdit}
+                fetchUsers = {fetchUsers}
+                setSuccessMessage = {setSuccessMessage}
+                setSuccessOpen = {setSuccessOpen}
             />
         }
+        <Snackbar open={successOpen} autoHideDuration={6000} onClose={handleCloseSnack}>
+            <Alert onClose={handleCloseSnack} variant="filled" severity="success" sx={{ width: '100%' }}>
+                {successMessage}
+            </Alert>
+        </Snackbar>
     </>
   )
 }

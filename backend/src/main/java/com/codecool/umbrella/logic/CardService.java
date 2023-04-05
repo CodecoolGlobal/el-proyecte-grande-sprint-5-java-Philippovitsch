@@ -5,6 +5,7 @@ import com.codecool.umbrella.model.WeatherCard;
 import com.codecool.umbrella.model.repository.UserRepository;
 import com.codecool.umbrella.model.repository.WeatherCardRepository;
 import com.codecool.umbrella.security.services.UserDetailsImpl;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,9 @@ public class CardService {
             user.get().getWeatherCards().add(newCard);
             cardRepository.save(newCard);
             userRepository.save(user.get());
+        }
+        else {
+            throw new ObjectNotFoundException(User.class, "User");
         }
     }
 
