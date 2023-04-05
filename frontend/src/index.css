@@ -178,8 +178,6 @@ input {
 .event-wrapper {
     position: relative;
     margin-top: 8px;
-    scroll-behavior: smooth;
-    overflow: auto;
     display: flex;
     gap: 30px;
     padding: 24px;
@@ -190,29 +188,15 @@ input {
 
 .event-cards {
     display: inline-grid;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     column-gap: 10px;
     row-gap: 10px;
     grid-template-columns: repeat(3, 1fr);
     overflow: auto;
+    white-space: nowrap;
 }
 
-/* Custom scrollbar for Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgb(58, 65, 111) rgb(20, 23, 39);
-}
-
-/* Custom scrollbar for Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 12px;
-}
-
-*::-webkit-scrollbar-track {
-  background: rgb(20, 23, 39);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: rgb(58, 65, 111);
-  border-radius: 20px;
-  border: 3px solid rgb(20, 23, 39);
+.event-cards::-webkit-scrollbar {
+    display: none;
 }
