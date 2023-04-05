@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// url could come from an environment variable
 const url = "http://localhost:8080/api/auth/"
 const axiosInstance = axios.create({
   withCredentials: true

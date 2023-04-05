@@ -30,6 +30,7 @@ export default function SignUp() {
 
     const roles = [];
     checkboxes.forEach(checkbox => {
+      // write one operation per line, there is no need to make everything a one-liner
       roles.push(checkbox.value.replaceAll("role-", ""));
     })
     return roles;
@@ -42,7 +43,11 @@ export default function SignUp() {
       password: password,
       role: getUserRoles()
     }
-    const response = await signUp(userData);
+    const response = await signUp(userData)
+    // .then(response=> {
+      
+    // })
+    // use then chaining method of the Promise, instead of await
 
     if (response.status === 200) {
       setSeverity("success");

@@ -14,6 +14,7 @@ import UserDetails from './components/UserDetails';
 export default function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
+  // createContext & useContext for the user
   return (
     <>
       <Header title='WeatherTracker' userData = {user} />
