@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,15 +17,16 @@ import java.util.Optional;
 @Service
 public class CardService {
 
-    @Autowired
+    @Autowired //remove
     private WeatherCardRepository cardRepository;
 
-    @Autowired
+    @Autowired //remove and ask via constructor
     private UserRepository userRepository;
 
     public List<WeatherCard> getAllWeatherCards() {
         Optional<User> user = getCurrentUser();
-        return user.map(User::getWeatherCards).orElse(null);
+        return user.map(User::getWeatherCards)
+                .orElse(new ArrayList<>());
     }
 
     public void saveWeatherCard(WeatherCard newCard) {

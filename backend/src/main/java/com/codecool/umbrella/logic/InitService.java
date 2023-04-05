@@ -22,8 +22,7 @@ public class InitService {
     private final UserRepository userRepo;
     private final WeatherCardRepository weatherCardRepo;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
+    
     public InitService(RoleRepository roleRepository, WeatherCardRepository weatherCardRepo,
                        UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;

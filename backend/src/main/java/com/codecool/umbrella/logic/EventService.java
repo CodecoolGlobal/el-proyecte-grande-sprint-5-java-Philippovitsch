@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class EventService {
-    @Autowired
+    @Autowired // improve
     private EventRepository eventRepository;
 
     public List<EventCard> getAllEventCards() {

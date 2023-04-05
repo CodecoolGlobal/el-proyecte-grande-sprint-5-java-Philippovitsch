@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthenticationEndpoint {
 
-    @Autowired
+    @Autowired // improve
     private AuthEndpointService endpointService;
 
     @PostMapping("/sign-in")

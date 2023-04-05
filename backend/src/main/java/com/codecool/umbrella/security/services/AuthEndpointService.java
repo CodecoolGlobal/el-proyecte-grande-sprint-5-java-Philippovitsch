@@ -34,20 +34,11 @@ import java.util.Set;
 @Service
 public class AuthEndpointService {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JwtUtils jwtUtils;
+    private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
 
 
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

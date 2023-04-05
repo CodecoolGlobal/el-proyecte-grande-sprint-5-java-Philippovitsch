@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class AdminService {
 
-    @Autowired
+    @Autowired // remove
     private UserRepository userRepository;
 
     public List<User> getAllUsers() {
