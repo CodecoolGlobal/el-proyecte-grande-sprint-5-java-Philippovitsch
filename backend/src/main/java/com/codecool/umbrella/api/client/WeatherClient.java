@@ -3,6 +3,7 @@ package com.codecool.umbrella.api.client;
 import com.codecool.umbrella.logic.WebClientService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Controller
 public class WeatherClient {
@@ -45,7 +46,7 @@ public class WeatherClient {
         return webClientService.getOne(forecastWeatherApi, params);
     }
 
-    public String getForecastBy(String date, String coordinates) {
+    public String getForecastBy(String date, String coordinates) throws WebClientResponseException {
         String latitude = coordinates.split(",")[0];
         String longitude = coordinates.split(",")[1];
         String params = String.format(

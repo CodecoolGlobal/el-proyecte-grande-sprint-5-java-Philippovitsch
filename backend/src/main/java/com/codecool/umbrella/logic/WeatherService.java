@@ -5,6 +5,11 @@ import com.codecool.umbrella.api.dto.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class WeatherService {
@@ -32,8 +37,22 @@ public class WeatherService {
     }
 
     public DailyForecastDTO getForecastForDay(String coordinates, String date ) throws JsonProcessingException {
-        String json = weatherClient.getForecastBy(date, coordinates);
-        SpecificDayForecastDTO specificDayForecastDTO = objectMapper.readValue(json, SpecificDayForecastDTO.class);
+        SpecificDayForecastDTO specificDayForecastDTO;
+        try {
+            String json = weatherClient.getForecastBy(date, coordinates);
+            specificDayForecastDTO = objectMapper.readValue(json, SpecificDayForecastDTO.class);
+        } catch (WebClientResponseException error) {
+            DailyForecastDTO dailyForecastDTO = DailyForecastDTO.builder()
+                    .time(List.of(new Timestamp(new Date().getTime()).toString()))
+                    .weathercode(List.of("-1"))
+                    .temperature_2m_max(List.of("n.a."))
+                    .temperature_2m_min(List.of("n.a."))
+                    .windspeed_10m_max(List.of("n.a."))
+                    .build();
+
+            specificDayForecastDTO = new SpecificDayForecastDTO();
+            specificDayForecastDTO.setDailyForecastDTO(dailyForecastDTO);
+        }
         return specificDayForecastDTO.getDailyForecastDTO();
     }
 }

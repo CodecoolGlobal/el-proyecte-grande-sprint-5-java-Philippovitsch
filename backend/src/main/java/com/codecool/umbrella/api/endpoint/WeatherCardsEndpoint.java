@@ -27,7 +27,6 @@ public class WeatherCardsEndpoint {
 
     @DeleteMapping("/delete/{latitude},{longitude}")
     public void removeWeatherCard(@PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
-        System.out.println(latitude + " " +  longitude);
         cardService.removeWeatherCard(latitude, longitude);
     }
 
