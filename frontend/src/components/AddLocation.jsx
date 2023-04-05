@@ -19,12 +19,13 @@ const [locations, setLocations] = useState([]);
 
   const onAdd = (location) => {
     addLocation(location, setShowDropDown);
-    toggleSearchField(false);
+    toggleSearchField();
   }
 
-  document.onkeydown = (event) => {
-    if (event.code === "Escape" && showDropDown) {
+  const closeSearchField = (event) => {
+    if (event.code === "Escape") {
       setShowDropDown(false);
+      toggleSearchField();
     }
   };
 
@@ -32,9 +33,11 @@ const [locations, setLocations] = useState([]);
     <div>
       <div className='add-location'>
         <OutlinedInput
+          autoFocus
           className='location-textfield'
           placeholder="Add location"
           onChange={(event) => getLocations(event.target.value)}
+          onKeyDown={closeSearchField}
         />
         {showDropDown && <LocationDropDown locations={locations} onAdd={onAdd}/>}
       </div>
