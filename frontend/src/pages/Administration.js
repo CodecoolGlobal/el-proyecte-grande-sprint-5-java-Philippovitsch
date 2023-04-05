@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import { Card } from '@mui/material'
 import { Typography } from '@mui/material';
 import { Paper } from '@mui/material';
 import UsersTable from '../components/UsersTable';
 
 export default function Administration({userData}) {
-    console.log(userData)
   return (
     <>
         { userData && userData.roles.includes("ROLE_ADMIN") &&

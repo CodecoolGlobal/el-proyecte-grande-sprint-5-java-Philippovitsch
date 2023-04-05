@@ -21,8 +21,6 @@ export default function ResponsiveAppBar(props) {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  console.log(props.userData)
-  console.log(props.userData === null)
   return (
     <>
       <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
