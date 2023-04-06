@@ -16,6 +16,8 @@ USER umbrellaUser
 EXPOSE 8080
 CMD ["java", "-jar", "umbrella-0.0.1-SNAPSHOT.jar"]
 
+### Build Image ###
+# docker build -t umbrella-backend:v5.0 -f backend.dockerfile .
 
-# docker build -t umbrella-backend:v5.0 -f Application.dockerfile .
+### Run Image ###
 # docker run --name umbrella-backend --rm -d -p 8080:8080 umbrella-backend:v5.0
