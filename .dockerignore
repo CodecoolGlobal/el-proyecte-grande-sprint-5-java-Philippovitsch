@@ -1,0 +1,12 @@
+### ROOT FOLDER ###
+.git
+.gitignore
+README
+
+### BACKEND ###
+.idea
+target
+
+### FRONTEND ###
+node_modules
+package-lock.json
