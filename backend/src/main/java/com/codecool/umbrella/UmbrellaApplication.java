@@ -18,6 +18,7 @@ public class UmbrellaApplication {
 	public void createUserEntries() {
 		initService.createUserEntries();
 		initService.createWeatherCards();
+		initService.createUserEvents();
 	}
 
 	public static void main(String[] args) {
