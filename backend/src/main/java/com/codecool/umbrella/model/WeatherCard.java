@@ -24,4 +24,5 @@ public class WeatherCard {
     private double latitude;
 
     private double longitude;
+
 }

@@ -8,9 +8,11 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrentWeatherDTO {
+
     private double temperature;
     private double windspeed;
     private double winddirection;
     private int weathercode;
     private String time;
+
 }

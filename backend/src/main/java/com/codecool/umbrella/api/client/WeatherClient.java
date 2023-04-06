@@ -7,6 +7,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 @Controller
 public class WeatherClient {
+
     private final String currentWeatherApi;
     private final String forecastWeatherApi;
     private final String forecastDayApi;
@@ -58,4 +59,5 @@ public class WeatherClient {
         );
         return webClientService.getOne(forecastDayApi, params);
     }
+
 }

@@ -10,5 +10,7 @@ import java.util.List;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LocationsDTO {
+
     private List<CoordinatesDTO> results;
+
 }

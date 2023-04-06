@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class WeatherService {
+
     private final WeatherClient weatherClient;
     private final ObjectMapper objectMapper;
 
@@ -55,4 +56,5 @@ public class WeatherService {
         }
         return specificDayForecastDTO.getDailyForecastDTO();
     }
+
 }

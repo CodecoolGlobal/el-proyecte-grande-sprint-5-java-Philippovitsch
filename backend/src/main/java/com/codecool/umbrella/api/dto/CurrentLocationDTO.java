@@ -9,9 +9,9 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrentLocationDTO {
 
-    int place_id;
-    float lat;
-    float lon;
-    String display_name;
+    private int place_id;
+    private float lat;
+    private float lon;
+    private String display_name;
 
 }

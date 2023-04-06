@@ -16,16 +16,21 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
+
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${umbrella.app.jwtSecret}")
-    private String jwtSecret;
+    private final String jwtSecret;
+    private final int jwtExpirationMs;
+    private final String jwtCookie;
 
-    @Value("${umbrella.app.jwtExpirationMs}")
-    private int jwtExpirationMs;
-
-    @Value("${umbrella.app.jwtCookieName}")
-    private String jwtCookie;
+    public JwtUtils(
+            @Value("${umbrella.app.jwtSecret}") String jwtSecret,
+            @Value("${umbrella.app.jwtExpirationMs}") int jwtExpirationMs,
+            @Value("${umbrella.app.jwtCookieName}") String jwtCookie) {
+        this.jwtSecret = jwtSecret;
+        this.jwtExpirationMs = jwtExpirationMs;
+        this.jwtCookie = jwtCookie;
+    }
 
     public String getJwtFromCookies(HttpServletRequest request) {
         Cookie cookie = WebUtils.getCookie(request, jwtCookie);
@@ -81,4 +86,5 @@ public class JwtUtils {
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
+
 }

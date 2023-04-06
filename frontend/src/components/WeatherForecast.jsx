@@ -38,7 +38,7 @@ export default function WeatherForecast({ weatherForecast, country, location }) 
       <Typography className="location"
         variant="body1"
         sx={{ textAlign: 'center', mb: 2 }}>
-          <i>{country + ", " + location}</i>
+          <i>{location + ", " + country}</i>
       </Typography> 
     </>
   )

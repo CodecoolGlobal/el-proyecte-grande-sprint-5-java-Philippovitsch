@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/location")
 public class LocationEndpoint {
 
-    LocationService locationService;
+    private final LocationService locationService;
 
     public LocationEndpoint(LocationService locationService) {
         this.locationService = locationService;

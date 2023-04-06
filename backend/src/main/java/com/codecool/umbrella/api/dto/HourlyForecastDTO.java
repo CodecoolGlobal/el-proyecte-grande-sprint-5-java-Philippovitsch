@@ -14,9 +14,9 @@ public class HourlyForecastDTO {
     private float latitude;
     private float longitude;
 
-    List<String> time;
-    List<String> temperature_2m;
-    List<String> windspeed_10m;
-    List<String> rain;
+    private List<String> time;
+    private List<String> temperature_2m;
+    private List<String> windspeed_10m;
+    private List<String> rain;
 
 }

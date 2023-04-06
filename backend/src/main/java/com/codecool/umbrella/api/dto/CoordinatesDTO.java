@@ -8,9 +8,11 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CoordinatesDTO {
+
     private String id;
     private String name;
     private String country;
     private String latitude;
     private String longitude;
+
 }

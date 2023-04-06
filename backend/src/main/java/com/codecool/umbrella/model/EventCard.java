@@ -1,8 +1,6 @@
 package com.codecool.umbrella.model;
 
-import com.codecool.umbrella.api.dto.DailyForecastDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
