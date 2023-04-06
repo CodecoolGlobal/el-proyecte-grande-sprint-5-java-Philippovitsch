@@ -31,7 +31,7 @@ export default function EventModal({ closeModal, addCalendarEvent, date }) {
 
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      const geolocation = await fetchData(`/api/location/${latitude},${longitude}`);
+      const geolocation = await fetchData(`http://localhost:8080/api/location/${latitude},${longitude}`);
       setGeolocation(`${geolocation.display_name}`);
 
       if (timestamp !== undefined) {

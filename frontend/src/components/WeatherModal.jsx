@@ -11,7 +11,7 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { ForecastChart } from './ForecastChart';
 
-const TEST_MODE = false;
+const TEST_MODE = true;
 
 export default function WeatherModal({ closeModal, locationData, weatherIcon }) {
   const [funFact, setFunFact] = useState("");
@@ -27,7 +27,7 @@ export default function WeatherModal({ closeModal, locationData, weatherIcon }) 
     const getLocalTime = async () => {
       const latitude = locationData.latitude;
       const longitude = locationData.longitude;
-      const localTime = await fetchData(`/api/location/${latitude},${longitude}/time`);
+      const localTime = await fetchData(`http://localhost:8080/api/location/${latitude},${longitude}/time`);
       setLocalTime(`${localTime.time}`);
     }
 

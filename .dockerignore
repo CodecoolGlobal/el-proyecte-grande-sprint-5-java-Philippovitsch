@@ -1,12 +1,15 @@
 ### ROOT FOLDER ###
 .git
 .gitignore
+*.dockerfile
 README
 
 ### BACKEND ###
-.idea
-target
+backend/.idea
+backend/target
 
 ### FRONTEND ###
-node_modules
-package-lock.json
+frontend/.vscode
+frontend/node_modules
+forntend/build
+frontend/package-lock.json

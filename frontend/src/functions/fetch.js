@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 export async function fetchWeatherData(location) {
-  const response = await axiosInstance.get(`/api/weather/${location.latitude},${location.longitude}/current`);
+  const response = await axiosInstance.get(`http://localhost:8080/api/weather/${location.latitude},${location.longitude}/current`);
   const weatherData = response.data;
   return {
     id: weatherId++,
@@ -21,13 +21,13 @@ export async function fetchWeatherData(location) {
 }
 
 export async function fetchEventData() {
-  const response = await axiosInstance.get(`/api/events`);
+  const response = await axiosInstance.get(`http://localhost:8080/api/events`);
   const eventData = response.data;
   return eventData;
 }
 
 export async function fetchCoordinates(location) {
-  const coordinatesRes = await axiosInstance.get(`/api/coordinates/${location}`);
+  const coordinatesRes = await axiosInstance.get(`http://localhost:8080/api/coordinates/${location}`);
   const data = coordinatesRes.data;
   return (data) ? data : [];
 }
@@ -54,7 +54,7 @@ export async function deleteCard(latitude, longitude) {
 }
 
 export async function fetchDailyData(latitude, longitude, date) {
-  const weatherRes = await axiosInstance.get(`api/weather/${latitude},${longitude}/day/${date}`);
+  const weatherRes = await axiosInstance.get(`http://localhost:8080/api/weather/${latitude},${longitude}/day/${date}`);
   const weatherData = weatherRes.data;
   return weatherData;
 

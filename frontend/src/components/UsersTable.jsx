@@ -40,7 +40,7 @@ export default function UsersTable({userData}) {
     }
 
     async function fetchUsers() {
-        const fetchedUsers = await fetchData("/api/admin");
+        const fetchedUsers = await fetchData("http://localhost:8080/api/admin");
         removeRole_Prefix(fetchedUsers);
         setUsers(fetchedUsers);
     }
