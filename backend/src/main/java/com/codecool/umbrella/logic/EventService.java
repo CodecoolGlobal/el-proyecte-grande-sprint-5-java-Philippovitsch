@@ -9,11 +9,12 @@ import java.util.List;
 
 @Service
 public class EventService {
+
     @Autowired
     private EventRepository eventRepository;
 
     public List<EventCard> getAllEventCards() {
-        return eventRepository.findAll();
+        return eventRepository.findAllByOrderByTimestampAsc();
     }
 
     public void saveEventCard(EventCard event) {
