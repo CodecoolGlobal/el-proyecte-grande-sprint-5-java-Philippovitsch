@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping("/api/events")
 public class EventsEndpoint {
 
-    @Autowired
-    private EventService eventService;
+    private final EventService eventService;
+
+    public EventsEndpoint(EventService eventService) {
+        this.eventService = eventService;
+    }
 
     @GetMapping
     public List<EventCard> getEventCards() {

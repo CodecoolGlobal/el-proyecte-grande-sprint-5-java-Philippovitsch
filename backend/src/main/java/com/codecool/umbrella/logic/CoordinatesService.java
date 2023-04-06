@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class CoordinatesService {
+
     private final CoordinatesClient coordinatesClient;
     private final ObjectMapper objectMapper;
 
@@ -24,4 +25,5 @@ public class CoordinatesService {
         LocationsDTO locationsDTO = objectMapper.readValue(json, LocationsDTO.class);
         return locationsDTO.getResults();
     }
+
 }

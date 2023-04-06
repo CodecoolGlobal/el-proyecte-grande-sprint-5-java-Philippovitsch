@@ -3,12 +3,10 @@ package com.codecool.umbrella.logic;
 import com.codecool.umbrella.model.ERole;
 import com.codecool.umbrella.model.Role;
 import com.codecool.umbrella.model.User;
-import com.codecool.umbrella.model.WeatherCard;
 import com.codecool.umbrella.model.repository.RoleRepository;
 import com.codecool.umbrella.model.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.ObjectNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -18,7 +16,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class AdminService {
-
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

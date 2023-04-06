@@ -13,10 +13,10 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DailyForecastDTO {
 
-    List<String> time;
-    List<String> weathercode;
-    List<String> temperature_2m_max;
-    List<String> temperature_2m_min;
-    List<String> windspeed_10m_max;
+    private List<String> time;
+    private List<String> weathercode;
+    private List<String> temperature_2m_max;
+    private List<String> temperature_2m_min;
+    private List<String> windspeed_10m_max;
 
 }

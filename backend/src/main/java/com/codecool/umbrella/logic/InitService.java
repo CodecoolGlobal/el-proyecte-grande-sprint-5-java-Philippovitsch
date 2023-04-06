@@ -7,7 +7,6 @@ import com.codecool.umbrella.model.WeatherCard;
 import com.codecool.umbrella.model.repository.RoleRepository;
 import com.codecool.umbrella.model.repository.UserRepository;
 import com.codecool.umbrella.model.repository.WeatherCardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,6 @@ public class InitService {
     private final WeatherCardRepository weatherCardRepo;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
     public InitService(RoleRepository roleRepository, WeatherCardRepository weatherCardRepo,
                        UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;

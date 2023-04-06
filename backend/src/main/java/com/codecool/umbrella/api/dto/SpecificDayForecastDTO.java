@@ -12,4 +12,5 @@ public class SpecificDayForecastDTO {
 
     @JsonProperty("daily")
     private DailyForecastDTO dailyForecastDTO;
+
 }

@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/coordinates")
 public class CoordinatesEndpoint {
+
     private final CoordinatesService coordinatesService;
 
     public CoordinatesEndpoint(CoordinatesService coordinatesService) {
@@ -21,4 +22,5 @@ public class CoordinatesEndpoint {
     public List<CoordinatesDTO> getByName(@PathVariable String name) throws JsonProcessingException {
         return coordinatesService.getByName(name);
     }
+
 }

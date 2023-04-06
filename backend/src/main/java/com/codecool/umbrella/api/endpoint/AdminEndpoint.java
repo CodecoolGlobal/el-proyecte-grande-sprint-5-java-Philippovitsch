@@ -1,10 +1,8 @@
 package com.codecool.umbrella.api.endpoint;
 
 import com.codecool.umbrella.logic.AdminService;
-import com.codecool.umbrella.model.EventCard;
 import com.codecool.umbrella.model.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +12,6 @@ import java.util.List;
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AdminEndpoint {
-
 
     private final AdminService adminService;
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/weather/")
 public class WeatherEndpoint {
+
     private final WeatherService weatherService;
 
     public WeatherEndpoint(WeatherService weatherService) {
@@ -31,4 +32,5 @@ public class WeatherEndpoint {
     public DailyForecastDTO getForecastForDay(@PathVariable String coordinates, @PathVariable String date) throws JsonProcessingException {
         return weatherService.getForecastForDay(coordinates, date);
     }
+
 }

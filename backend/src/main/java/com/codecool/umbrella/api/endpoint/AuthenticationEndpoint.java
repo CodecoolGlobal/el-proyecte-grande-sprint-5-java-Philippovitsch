@@ -4,7 +4,6 @@ import com.codecool.umbrella.security.payload.request.LoginRequest;
 import com.codecool.umbrella.security.payload.request.SignUpRequest;
 import com.codecool.umbrella.security.services.AuthEndpointService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthenticationEndpoint {
 
-    @Autowired
-    private AuthEndpointService endpointService;
+    private final AuthEndpointService endpointService;
+
+    public AuthenticationEndpoint(AuthEndpointService endpointService) {
+        this.endpointService = endpointService;
+    }
 
     @PostMapping("/sign-in")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -30,4 +32,5 @@ public class AuthenticationEndpoint {
     public ResponseEntity<?> logoutUser() {
         return endpointService.logoutUser();
     }
+
 }
