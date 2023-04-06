@@ -11,7 +11,7 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { ForecastChart } from './ForecastChart';
 
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 export default function WeatherModal({ closeModal, locationData, weatherIcon }) {
   const [funFact, setFunFact] = useState("");
