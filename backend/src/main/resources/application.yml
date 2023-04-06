@@ -6,20 +6,22 @@ api:
   time: "https://www.timeapi.io/api/Time/current/coordinate"
   weatherForecastSpecificDay: "https://api.open-meteo.com/v1/forecast?daily=weathercode,temperature_2m_max,temperature_2m_min,windspeed_10m_max&timezone=Europe/Berlin"
 
+
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/umbrella"
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    url: jdbc:h2:mem:demo_db
+    driver-class-name: org.h2.Driver
+    username: umbrella
+    password: umbrella
   jpa:
-    hibernate:
-      ddl-auto: "create-drop"
-
-    show-sql: "false"
     properties:
       hibernate:
-        format_sql: "true"
-        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
 
 umbrella:
   app:
