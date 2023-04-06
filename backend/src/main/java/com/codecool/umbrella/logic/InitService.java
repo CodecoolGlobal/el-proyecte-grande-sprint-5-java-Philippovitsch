@@ -49,6 +49,11 @@ public class InitService {
         userRepo.save(user);
         userRepo.save(premiumUser);
         userRepo.save(admin);
+
+        // Presentation stuff
+        User hackerman = new User("MisterHackerman", "hackerman@umbrella.cool", passwordEncoder.encode("hackerman"));
+        hackerman.setRoles(Set.of(userRole));
+        userRepo.save(hackerman);
     }
 
     @Lazy

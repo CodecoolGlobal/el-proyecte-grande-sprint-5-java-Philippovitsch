@@ -10,7 +10,7 @@ export default function About() {
         <Typography gutterBottom component="div" sx={{ whiteSpace: "normal" }}>
           The Umbrella Corporation was founded on January 30th 2023 so that
           three coding amateurs could finish the last stage of their training
-          to finally get a job and do something with there lives.
+          to finally get a job and do something with their lives.
         </Typography>
         <List sx={{ ml: -2 }}>
           <ListItemButton style={{ cursor: 'default' }}>
