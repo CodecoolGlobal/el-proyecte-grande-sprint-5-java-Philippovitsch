@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types'
 import { useState } from "react";
-import { Card, CardContent, Typography, Box, Tooltip } from "@mui/material";
+import PropTypes from 'prop-types';
+
 import CloseIcon from '@mui/icons-material/Close';
+import { Card, CardContent, Typography, Box, Tooltip } from "@mui/material";
+
 import WeatherModal from "./WeatherModal";
 
 const BACKEND_URL = process.env.PUBLIC_URL;

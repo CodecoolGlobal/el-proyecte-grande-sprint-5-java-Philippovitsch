@@ -1,7 +1,7 @@
-import EventCard from "./EventCard";
 import Box from "@mui/system/Box";
 import LinearProgress from '@mui/material/LinearProgress';
 
+import EventCard from "./EventCard";
 
 export default function EventCards({ eventCards }) {
   return (

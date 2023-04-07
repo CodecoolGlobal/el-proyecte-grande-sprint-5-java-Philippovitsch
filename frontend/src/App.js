@@ -1,20 +1,20 @@
 import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Events from './pages/Events';
+import Administration from './pages/Administration';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import LogOut from './pages/LogOut';
-import Administration from './pages/Administration';
-import { useState } from 'react';
 import UserDetails from './pages/UserDetails';
-
 
 export default function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-
+  
   return (
     <>
       <Header title='WeatherTracker' userData = {user} />

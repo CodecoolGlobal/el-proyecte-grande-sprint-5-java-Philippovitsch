@@ -1,6 +1,7 @@
 import { Card } from '@mui/material'
 import { Typography } from '@mui/material';
 import { Paper } from '@mui/material';
+
 import UsersTable from '../components/UsersTable';
 
 export default function Administration({userData}) {

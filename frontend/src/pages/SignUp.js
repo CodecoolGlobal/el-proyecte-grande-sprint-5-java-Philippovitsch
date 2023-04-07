@@ -1,5 +1,7 @@
-import { Alert, Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+
+import { Alert, Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+
 import { signUp } from "../fetch/authEndpoint";
 
 export default function SignUp() {

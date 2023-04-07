@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'
 
 import Typography from '@mui/material/Typography';
@@ -5,12 +6,11 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-
-import { Box } from '@mui/system';
-import { getFunFact } from '../fetch/openAiEndpoint';
-import { useEffect, useState } from 'react';
-import { ForecastChart } from './ForecastChart';
 import { CircularProgress } from '@mui/material';
+import { Box } from '@mui/system';
+
+import { ForecastChart } from './ForecastChart';
+import { getFunFact } from '../fetch/openAiEndpoint';
 import { getLocalTime } from '../fetch/locationEndpoint';
 
 const TEST_MODE = true;

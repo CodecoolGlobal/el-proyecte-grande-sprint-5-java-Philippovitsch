@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { getWeatherForecast } from '../fetch/weatherEndpoint';
+import PropTypes from 'prop-types'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +11,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+
+import { getWeatherForecast } from '../fetch/weatherEndpoint';
 
 export function ForecastChart({ locationData }) {
   useEffect(() => {

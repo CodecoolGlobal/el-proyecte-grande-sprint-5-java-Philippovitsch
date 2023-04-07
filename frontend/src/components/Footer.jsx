@@ -1,5 +1,7 @@
-import { Typography, Box, Container } from "@mui/material"
 import { useEffect, useState } from "react";
+
+import { Typography, Box, Container } from "@mui/material"
+
 import { getGeolocation, getLocalTime } from "../fetch/locationEndpoint";
 
 export default function Footer(props) {

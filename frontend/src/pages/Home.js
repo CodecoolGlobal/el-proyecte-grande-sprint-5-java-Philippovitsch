@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import { Snackbar, Alert, Typography } from "@mui/material";
+
 import WeatherCards from "../components/WeatherCards";
 import { getCurrentWeather } from "../fetch/weatherEndpoint";
 import { deleteCard, getAllCards, saveCard } from "../fetch/weatherCardEndpoint";
 import { getCoordinates } from "../fetch/coordinatesEndpoint";
-import { NavLink } from "react-router-dom";
 
 export default function Home({userData}) {
     const [defaultLocations, setDefaultLocations] = useState([]);

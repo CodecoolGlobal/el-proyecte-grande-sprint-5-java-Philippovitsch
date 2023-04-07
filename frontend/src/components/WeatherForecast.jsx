@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+
 import { WIND_ICON, getWeatherIcon } from "./WeatherCard";
 
 export default function WeatherForecast({ weatherForecast, country, location }) {

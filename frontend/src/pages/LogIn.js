@@ -1,11 +1,11 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
 import { Alert, Button, Typography } from '@mui/material';
-import { useState } from 'react';
 
 import { logIn } from '../fetch/authEndpoint';
-import { useNavigate } from 'react-router-dom';
 
 export default function LogIn({setUser}) {
   const [username, setUsername] = useState("");

@@ -1,6 +1,8 @@
-import { Alert } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+
+import { Alert } from '@mui/material';
+
 import { logOut } from '../fetch/authEndpoint';
 
 export default function LogOut({setUser}) {

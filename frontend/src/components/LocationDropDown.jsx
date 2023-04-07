@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+
 import { MenuItem } from "@mui/material";
 
 export default function LocationDropDown({ locations, onAdd }) {

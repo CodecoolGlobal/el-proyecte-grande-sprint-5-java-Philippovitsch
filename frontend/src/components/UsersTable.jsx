@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
+
 import { TableContainer } from "@mui/material";
 import { Table, TableHead, TableRow, TableCell, Paper, TableBody } from "@mui/material";
 import { Button } from '@mui/material';
 import { Snackbar, Alert } from '@mui/material';
-import { getAllUsers, deleteUser } from '../fetch/adminEndpoint';
+
 import RoleManagementModal from './RoleManagementModal';
+import { getAllUsers, deleteUser } from '../fetch/adminEndpoint';
 
 export default function UsersTable({userData}) {
-
     const [users, setUsers] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [userToEditRole, setUserToEditRole] = useState('');

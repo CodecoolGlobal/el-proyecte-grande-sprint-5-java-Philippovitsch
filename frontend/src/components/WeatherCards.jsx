@@ -1,8 +1,10 @@
-import WeatherCard from "./WeatherCard";
+import { useState } from "react";
+
 import LinearProgress from '@mui/material/LinearProgress';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import Box from '@mui/material/Box';
-import { useState } from "react";
+
+import WeatherCard from "./WeatherCard";
 import AddLocation from "./AddLocation";
 
 export default function WeatherCards(props) {

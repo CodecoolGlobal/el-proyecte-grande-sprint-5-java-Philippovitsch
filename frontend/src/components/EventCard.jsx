@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography } from "@mui/material";
+
 import WeatherForecast from "./WeatherForecast";
 
 export default function EventCard({ card }) {

@@ -1,9 +1,11 @@
-import Calendar from "../components/Calendar";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+
+import { Typography } from "@mui/material";
+
+import Calendar from "../components/Calendar";
 import EventCards from "../components/EventCards";
 import { getAllEvents, saveEvent } from "../fetch/eventEndpoint";
-import { Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
 
 export default function Events() {
   const [eventCards, setEventCards] = useState([]);
