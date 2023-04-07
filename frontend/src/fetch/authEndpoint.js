@@ -1,13 +1,8 @@
-import axios from "axios";
-
-const url = "http://localhost:8080/api/auth/"
-const axiosInstance = axios.create({
-  withCredentials: true
-});
+import {axiosInstance, url} from "./axiosInstance"
 
 export async function signUp(userData) {
   try {
-    const response = await axiosInstance.post(url + "sign-up", userData);
+    const response = await axiosInstance.post(`${url}/api/auth/sign-up`, userData);
     return {
 			status: response.status,
 			userData: response.data
@@ -23,7 +18,7 @@ export async function signUp(userData) {
 
 export async function logIn(userData) {
   try{
-    const response = await axiosInstance.post(url + "sign-in", userData);
+    const response = await axiosInstance.post(`${url}/api/auth/sign-in`, userData);
     localStorage.setItem("user", JSON.stringify(response.data));
     return {
       status: response.status,
@@ -40,7 +35,7 @@ export async function logIn(userData) {
 
 export async function logOut() {
   try{
-    const response = await axiosInstance.post(url + "sign-out");
+    const response = await axiosInstance.post(`${url}/api/auth/sign-out`);
     localStorage.removeItem("user");
     return {
       status: response.status,

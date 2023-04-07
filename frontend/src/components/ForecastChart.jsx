@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react';
-import { fetchData } from '../functions/fetch';
 import { Line } from 'react-chartjs-2';
+import { getWeatherForecast } from '../fetch/weatherEndpoint';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -18,7 +18,7 @@ export function ForecastChart({ locationData }) {
     const fetchWeatherForecast = async () => {
       const latitude = locationData.latitude;
       const longitude = locationData.longitude;
-      const weatherData = await fetchData(`http://localhost:8080/api/weather/${latitude},${longitude}/forecast`);
+      const weatherData = await getWeatherForecast(latitude, longitude);
       safeWeatherData(weatherData);
     };
 

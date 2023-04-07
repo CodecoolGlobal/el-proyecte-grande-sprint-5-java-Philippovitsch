@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 import { Snackbar, Alert, Typography } from "@mui/material";
 import WeatherCards from "../components/WeatherCards";
-import { fetchCoordinates, fetchWeatherData, saveCard, fetchCards, deleteCard } from "../functions/fetch";
+import { getCurrentWeather } from "../fetch/weatherEndpoint";
+import { deleteCard, getAllCards, saveCard } from "../fetch/weatherCardEndpoint";
+import { getCoordinates } from "../fetch/coordinatesEndpoint";
 import { NavLink } from "react-router-dom";
 
-
 export default function Home({userData}) {
+    const [defaultLocations, setDefaultLocations] = useState([]);
+    const [weatherCards, setWeatherCards] = useState([]);
+
     useEffect(() => {
         async function setLocationsAtStart() {
             if (!userData) {
                 return;
             }
-            const startLocations = await fetchCards();
+            const startLocations = await getAllCards();
             setDefaultLocations(startLocations);
         };
         setLocationsAtStart();
     }, [userData])
-
-    const [defaultLocations, setDefaultLocations] = useState([]);
-    const [weatherCards, setWeatherCards] = useState([]);
 
     useEffect(() => {
         async function loadWeatherCards() {
@@ -28,7 +29,8 @@ export default function Home({userData}) {
 
             const tempWeatherCards = []
             for (const location of defaultLocations) {
-                const card = await fetchWeatherData(location);
+                const card = await getCurrentWeather(location);
+                card.id = location.id;
                 card.latitude = location.latitude;
                 card.longitude = location.longitude;
                 tempWeatherCards.push(card);
@@ -39,7 +41,7 @@ export default function Home({userData}) {
     }, [defaultLocations, userData]);
 
     const fetchLocations = (location) => {
-        return fetchCoordinates(location);
+        return getCoordinates(location);
     }
 
     const alreadyExists = (location) => {
@@ -62,16 +64,13 @@ export default function Home({userData}) {
             longitude: parseFloat(location.longitude)
         }
 
-        async function handleSaving() {
-            const response = await saveCard(newLocation);
-            if (response === 200) {
-                setSuccessMessage("Successfully saved card!");
-                setSuccessOpen(true);
-            };
-        }
+        const response = await saveCard(newLocation);
+        if (response === 200) {
+            setSuccessMessage("Successfully saved card!");
+            setSuccessOpen(true);
+        };
 
-        await handleSaving();
-        setDefaultLocations([...defaultLocations, newLocation]);
+        setDefaultLocations(await getAllCards());
         setShowDropDown(false);
     }
 

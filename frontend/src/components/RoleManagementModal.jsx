@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { Typography, FormLabel, RadioGroup, FormControl, FormControlLabel, Radio, Grid, Box, Button } from '@mui/material'
-import { changeUserRole } from '../functions/fetch';
+import { changeUserRole } from '../fetch/adminEndpoint';
 
 export default function RoleManagementModal({ closeModal, userToEditRole, oldRole, fetchUsers, setSuccessMessage, setSuccessOpen }) {
 

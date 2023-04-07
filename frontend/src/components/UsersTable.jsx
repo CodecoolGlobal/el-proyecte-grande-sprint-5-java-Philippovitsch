@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { TableContainer } from "@mui/material";
 import { Table, TableHead, TableRow, TableCell, Paper, TableBody } from "@mui/material";
-import { fetchData } from '../functions/fetch';
 import { Button } from '@mui/material';
 import { Snackbar, Alert } from '@mui/material';
-import { removeUser } from '../functions/fetch';
+import { getAllUsers, deleteUser } from '../fetch/adminEndpoint';
 import RoleManagementModal from './RoleManagementModal';
 
 export default function UsersTable({userData}) {
@@ -25,7 +24,7 @@ export default function UsersTable({userData}) {
     };
 
     async function removeUserHandler(username) {
-        const response = await removeUser(username);
+        const response = await deleteUser(username);
         if (response === 200) {
             setSuccessMessage('User successfully deleted from Database.')
             setSuccessOpen(true);
@@ -40,7 +39,7 @@ export default function UsersTable({userData}) {
     }
 
     async function fetchUsers() {
-        const fetchedUsers = await fetchData("http://localhost:8080/api/admin");
+        const fetchedUsers = await getAllUsers();
         removeRole_Prefix(fetchedUsers);
         setUsers(fetchedUsers);
     }

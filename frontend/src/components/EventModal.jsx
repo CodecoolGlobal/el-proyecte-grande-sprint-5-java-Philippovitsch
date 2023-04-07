@@ -9,9 +9,9 @@ import { useEffect, useState } from 'react';
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import { fetchData } from '../functions/fetch';
-import { fetchDailyData } from '../functions/fetch';
 import WeatherForecast from './WeatherForecast';
+import { getGeolocation } from '../fetch/locationEndpoint';
+import { getDailyWeather } from '../fetch/weatherEndpoint';
 
 export default function EventModal({ closeModal, addCalendarEvent, date }) {
 
@@ -31,7 +31,7 @@ export default function EventModal({ closeModal, addCalendarEvent, date }) {
 
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      const geolocation = await fetchData(`http://localhost:8080/api/location/${latitude},${longitude}`);
+      const geolocation = await getGeolocation(latitude, longitude);
       setGeolocation(`${geolocation.display_name}`);
 
       if (timestamp !== undefined) {
@@ -39,7 +39,7 @@ export default function EventModal({ closeModal, addCalendarEvent, date }) {
         const month = timestamp.getMonth() + 1;
         const day = timestamp.getDate();
         const selectedDate = `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`
-        const weatherForecast = await fetchDailyData(latitude, longitude, selectedDate);
+        const weatherForecast = await getDailyWeather(latitude, longitude, selectedDate);
         setWeatherForecast(weatherForecast);
       }
     };

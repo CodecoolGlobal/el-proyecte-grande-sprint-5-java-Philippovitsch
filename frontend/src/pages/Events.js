@@ -1,7 +1,7 @@
 import Calendar from "../components/Calendar";
 import { useState, useEffect } from "react";
 import EventCards from "../components/EventCards";
-import { saveCalendarEvent, fetchEventData } from "../functions/fetch";
+import { getAllEvents, saveEvent } from "../fetch/eventEndpoint";
 import { Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
@@ -11,7 +11,7 @@ export default function Events() {
   const user = localStorage.getItem("user");
 
   const fetchData = async () => {
-    const eventCards = await fetchEventData();
+    const eventCards = await getAllEvents();
     setEventCards(eventCards);
   }
 
@@ -27,7 +27,7 @@ export default function Events() {
 
   const addCalendarEvent = async (calendarEvent) => {
     async function handleSaving() {
-      const response = await saveCalendarEvent(calendarEvent);
+      const response = await saveEvent(calendarEvent);
       if (response === 200) {
         console.log("Successfully saved Event!");
       };

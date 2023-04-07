@@ -1,6 +1,6 @@
 import { Alert, Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { signUp } from "../functions/authentication";
+import { signUp } from "../fetch/authEndpoint";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");

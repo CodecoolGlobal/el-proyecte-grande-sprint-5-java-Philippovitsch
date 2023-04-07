@@ -6,11 +6,12 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
-import { fetchData, fetchFunFact } from '../functions/fetch';
 import { Box } from '@mui/system';
+import { getFunFact } from '../fetch/openAiEndpoint';
 import { useEffect, useState } from 'react';
 import { ForecastChart } from './ForecastChart';
 import { CircularProgress } from '@mui/material';
+import { getLocalTime } from '../fetch/locationEndpoint';
 
 const TEST_MODE = true;
 
@@ -25,20 +26,20 @@ export default function WeatherModal({ closeModal, locationData, weatherIcon }) 
   };
 
   useEffect(() => {
-    const getLocalTime = async () => {
+    const fetchLocalTime = async () => {
       const latitude = locationData.latitude;
       const longitude = locationData.longitude;
-      const localTime = await fetchData(`http://localhost:8080/api/location/${latitude},${longitude}/time`);
+      const localTime = await getLocalTime(latitude, longitude);
       setLocalTime(`${localTime.time}`);
     }
 
-    const getFunFact = async () => {
-      const data = await fetchFunFact(locationData, TEST_MODE);
+    const fetchFunFact = async () => {
+      const data = await getFunFact(locationData, TEST_MODE);
       setFunFact(data.message);
     }
 
-    getLocalTime();
-    getFunFact();
+    fetchLocalTime();
+    fetchFunFact();
   }, [locationData]);
 
   const getWeatherState = () => {

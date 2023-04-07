@@ -1,6 +1,6 @@
 import { Typography, Box, Container } from "@mui/material"
 import { useEffect, useState } from "react";
-import { fetchData } from "../functions/fetch";
+import { getGeolocation, getLocalTime } from "../fetch/locationEndpoint";
 
 export default function Footer(props) {
   const [geolocation, setGeolocation] = useState("unknown");
@@ -10,14 +10,14 @@ export default function Footer(props) {
     const showCurrentLocation = async (position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      const geolocation = await fetchData(`http://localhost:8080/api/location/${latitude},${longitude}`);
+      const geolocation = await getGeolocation(latitude, longitude)
       setGeolocation(`${geolocation.display_name}`);
     }
 
     const showCurrentTime = async (position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      const localTime = await fetchData(`http://localhost:8080/api/location/${latitude},${longitude}/time`);
+      const localTime = await getLocalTime(latitude, longitude)
       setLocalTime(`${localTime.time}`);
     }
 

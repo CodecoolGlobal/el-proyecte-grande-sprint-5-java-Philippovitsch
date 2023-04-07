@@ -1,7 +1,7 @@
 import { Alert } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { logOut } from '../functions/authentication';
+import { logOut } from '../fetch/authEndpoint';
 
 export default function LogOut({setUser}) {
   const [severity, setSeverity] = useState("info");
