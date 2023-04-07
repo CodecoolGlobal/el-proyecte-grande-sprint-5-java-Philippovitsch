@@ -61,30 +61,16 @@ export async function fetchDailyData(latitude, longitude, date) {
 }
 
 export async function fetchFunFact(locationData, testMode = true) {
+  const location = locationData.location;
+  const country = locationData.country;
   let response;
-
   if (testMode) {
-    response = await fetch(`http://localhost:5000/test-fact`);
+    response = await axiosInstance.get(`http://localhost:8080/api/openai/test-fact/${location}/${country}`);
   } else {
-    response = await fetch(`https://api.openai.com/v1/completions`, {
-      method: "POST",
-      headers: {
-        'Authorization': 'Bearer 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',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "model": "text-davinci-003",
-        "prompt": `You are used for a weather app. Please give the user a funny fact about ${locationData.location} in ${locationData.country}`,
-        "max_tokens": 100
-      })
-    });
+    response = await axiosInstance.get(`http://localhost:8080/api/openai/fun-fact/${location}/${country}`);
+    console.log("Fetch fun fact: Test mode OFF!");
   }
-
-  if (response !== null) {
-    const data = await response.json();
-    return data.choices;
-  }
-
+  return response.data
 }
 
 export async function removeUser(username) {

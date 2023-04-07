@@ -10,6 +10,7 @@ import { fetchData, fetchFunFact } from '../functions/fetch';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { ForecastChart } from './ForecastChart';
+import { CircularProgress } from '@mui/material';
 
 const TEST_MODE = true;
 
@@ -33,8 +34,7 @@ export default function WeatherModal({ closeModal, locationData, weatherIcon }) 
 
     const getFunFact = async () => {
       const data = await fetchFunFact(locationData, TEST_MODE);
-      setFunFact(data[0].text);
-      console.log((TEST_MODE) ? "Fetch fun fact: Test mode ON" : "Fetch fun fact: Test mode OFF!");
+      setFunFact(data.message);
     }
 
     getLocalTime();
@@ -89,7 +89,10 @@ export default function WeatherModal({ closeModal, locationData, weatherIcon }) 
               <Typography component="div" sx={{ p: 2 }}>
                 <em>Fun fact about <b>{locationData.location} </b>
                   <span style={{ color: "#6F7378" }}>(by OpenAI)</span>:</em><br />
-                {funFact}
+                {(funFact === "")
+                  ? <CircularProgress sx={{ mt: 2 }}/>
+                  : funFact
+                }
               </Typography>
             </Box>
           </Grid>
