@@ -1,17 +1,34 @@
 import {axiosInstance, url} from "./axiosInstance"
 
-export async function getAllCards() {
-  const cards = await axiosInstance.get(`${url}/api/cards`);
-  const data = cards.data;
-  return data;
+export function getAllCards() {
+  return axiosInstance.get(`${url}/api/cards`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return [];
+    });
 }
 
-export async function saveCard(card) {
-  const response = await axiosInstance.post(`${url}/api/cards`, card);
-  return response.status;
+export function saveCard(card) {
+  return axiosInstance.post(`${url}/api/cards`, card)
+    .then(response => {
+      return response.status;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return error.response.status;
+    });
 }
 
-export async function deleteCard(latitude, longitude) {
-  const response = await axiosInstance.delete(`${url}/api/cards/delete/${latitude},${longitude}`)
-  return response.data.status;
+export function deleteCard(latitude, longitude) {
+  return axiosInstance.delete(`${url}/api/cards/delete/${latitude},${longitude}`)
+  .then(response => {
+    return response.status;
+  })
+  .catch(error => {
+    console.log("Error: " + error);
+    return error.response.status;
+  });
 }

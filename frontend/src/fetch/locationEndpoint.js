@@ -1,13 +1,27 @@
 import {axiosInstance, url} from "./axiosInstance"
 
-export async function getGeolocation(latitude, longitude) {
-  const response = await axiosInstance.get(`${url}/api/location/${latitude},${longitude}`);
-  const data = response.data;
-  return data;
+export function getGeolocation(latitude, longitude) {
+  return axiosInstance.get(`${url}/api/location/${latitude},${longitude}`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return {
+        display_name: "unknown"
+      };
+    });
 }
 
-export async function getLocalTime(latitude, longitude) {
-  const response = await axiosInstance.get(`${url}/api/location/${latitude},${longitude}/time`);
-  const data = response.data;
-  return data;
+export function getLocalTime(latitude, longitude) {
+  return axiosInstance.get(`${url}/api/location/${latitude},${longitude}/time`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return {
+        time: "unknown"
+      };
+    });
 }

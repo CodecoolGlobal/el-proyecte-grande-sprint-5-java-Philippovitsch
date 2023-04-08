@@ -1,17 +1,34 @@
 import {axiosInstance, url} from "./axiosInstance"
 
-export async function getAllUsers() {
-  const response = await axiosInstance.get(`${url}/api/admin`);
-  const data = response.data;
-  return data;
+export function getAllUsers() {
+  return axiosInstance.get(`${url}/api/admin`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return [];
+    });
 }
 
-export async function changeUserRole(username, newRole) {
-  const response = await axiosInstance.put(`${url}/api/admin/${username}/role/${newRole}`);
-  return response.status;
+export function changeUserRole(username, newRole) {
+  return axiosInstance.put(`${url}/api/admin/${username}/role/${newRole}`)
+    .then(response => {
+      return response.status;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return error.response.status;
+    });
 }
 
-export async function deleteUser(username) {
-  const response = await axiosInstance.delete(`${url}/api/admin/${username}/delete`);
-  return response.status;
+export function deleteUser(username) {
+  return axiosInstance.delete(`${url}/api/admin/${username}/delete`)
+    .then(response => {
+      return response.status;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return error.response.status;
+    })
 }

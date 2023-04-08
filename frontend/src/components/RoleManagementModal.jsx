@@ -2,21 +2,9 @@ import { useState } from 'react';
 
 import { Typography, FormLabel, RadioGroup, FormControl, FormControlLabel, Radio, Grid, Box, Button } from '@mui/material'
 
-import { changeUserRole } from '../fetch/adminEndpoint';
-
-export default function RoleManagementModal({ closeModal, userToEditRole, oldRole, fetchUsers, setSuccessMessage, setSuccessOpen }) {
+export default function RoleManagementModal({ closeModal, userToEditRole, oldRole, changeUserRoleHandler }) {
 
   const [newRole, setNewRole] = useState(oldRole);
-
-  async function changeUserRoleHandler(userToEditRole, newRole) {
-    const response = await changeUserRole(userToEditRole, newRole);
-    if (response === 200) {
-      closeModal();
-      fetchUsers();
-      setSuccessMessage('Successfully changed Role.');
-      setSuccessOpen(true);
-    }
-  }
 
   return (
     <div className="modal" onClick={closeModal}>

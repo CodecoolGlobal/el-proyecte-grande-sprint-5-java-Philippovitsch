@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { TableContainer } from "@mui/material";
 import { Table, TableHead, TableRow, TableCell, Paper, TableBody } from "@mui/material";
@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 import { Snackbar, Alert } from '@mui/material';
 
 import RoleManagementModal from './RoleManagementModal';
-import { getAllUsers, deleteUser } from '../fetch/adminEndpoint';
+import { getAllUsers, deleteUser, changeUserRole } from '../fetch/adminEndpoint';
 
 export default function UsersTable({userData}) {
   const [users, setUsers] = useState([]);
@@ -17,6 +17,16 @@ export default function UsersTable({userData}) {
   const [successMessage, setSuccessMessage] = useState("");
   const [successOpen, setSuccessOpen] = useState(false);
 
+  useEffect(() => {
+    async function fetchUsers() {
+      const fetchedUsers = await getAllUsers();
+      removeRole_Prefix(fetchedUsers);
+      setUsers(fetchedUsers);
+    }
+
+    fetchUsers();
+  }, []);
+
   const handleCloseSnack = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -24,13 +34,24 @@ export default function UsersTable({userData}) {
     setSuccessOpen(false);
   };
 
+  async function changeUserRoleHandler(userToEditRole, newRole) {
+    const response = await changeUserRole(userToEditRole, newRole);
+    if (response === 200) {
+      closeModal();
+      setSuccessMessage('Successfully changed Role.');
+      setSuccessOpen(true);
+      users.find(user => user.username === userToEditRole).roles[0].name = [newRole] ;
+    }
+  }
+
   async function removeUserHandler(username) {
     const response = await deleteUser(username);
-      if (response === 200) {
-        setSuccessMessage('User successfully deleted from Database.')
-        setSuccessOpen(true);
+    if (response === 200) {
+      setSuccessMessage('User successfully deleted from Database.')
+      setSuccessOpen(true);
+      const newUsers = users.filter(user => user.username !== username);
+      setUsers(newUsers);
     }
-    fetchUsers();
   }
 
   function removeRole_Prefix(fetchedUsers) {
@@ -38,14 +59,6 @@ export default function UsersTable({userData}) {
       element.roles[0].name = element.roles[0].name.substring(5);
     });
   }
-
-  async function fetchUsers() {
-    const fetchedUsers = await getAllUsers();
-    removeRole_Prefix(fetchedUsers);
-    setUsers(fetchedUsers);
-  }
-  fetchUsers();
-
 
   const closeModal = () => {
     setOpenModal(false);
@@ -106,9 +119,7 @@ export default function UsersTable({userData}) {
           closeModal= {closeModal}
           userToEditRole= {userToEditRole} 
           oldRole = {oldRoleOfUserToEdit}
-          fetchUsers = {fetchUsers}
-          setSuccessMessage = {setSuccessMessage}
-          setSuccessOpen = {setSuccessOpen}
+          changeUserRoleHandler={changeUserRoleHandler}
         />
       }
       <Snackbar open={successOpen} autoHideDuration={6000} onClose={handleCloseSnack}>

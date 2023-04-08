@@ -76,16 +76,13 @@ export default function Home({userData}) {
       setShowDropDown(false);
   }
 
-  function handleCloseClick(latitude, longitude) {
-    setDefaultLocations(defaultLocations.filter(location => location.latitude !== latitude && location.longitude !== longitude));
-    async function handleDeletion() {
-      const response = await deleteCard(latitude, longitude);
-      if (response === 200) {
-        setSuccessMessage("Successfully deleted card!");
-        setSuccessOpen(true);
-      };
-    }
-    handleDeletion();
+  async function handleCloseClick(latitude, longitude) {
+    const response = await deleteCard(latitude, longitude);
+    if (response === 200) {
+      setDefaultLocations(defaultLocations.filter(location => location.latitude !== latitude && location.longitude !== longitude));
+      setSuccessMessage("Successfully deleted card!");
+      setSuccessOpen(true);
+    };
   }
 
   const [successMessage, setSuccessMessage] = useState("");

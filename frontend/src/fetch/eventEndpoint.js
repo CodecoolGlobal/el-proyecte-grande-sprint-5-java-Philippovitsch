@@ -1,12 +1,23 @@
 import {axiosInstance, url} from "./axiosInstance"
 
-export async function getAllEvents() {
-  const response = await axiosInstance.get(`${url}/api/events`);
-  const eventData = response.data;
-  return eventData;
+export function getAllEvents() {
+  return axiosInstance.get(`${url}/api/events`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return [];
+    });
 }
 
-export async function saveEvent(calendarEvent) {
-  const response = await axiosInstance.post(`${url}/api/events`, calendarEvent);
-  return response.status;
+export function saveEvent(calendarEvent) {
+  return axiosInstance.post(`${url}/api/events`, calendarEvent)
+    .then(response => {
+        return response.status;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return error.response.status;
+    })
 }

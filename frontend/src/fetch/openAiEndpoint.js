@@ -1,14 +1,22 @@
 import {axiosInstance, url} from "./axiosInstance"
 
-export async function getFunFact(locationData, testMode = true) {
+export function getFunFact(locationData, testMode = true) {
   const location = locationData.location;
   const country = locationData.country;
-  let response;
-  if (testMode) {
-    response = await axiosInstance.get(`${url}/api/openai/test-fact/${location}/${country}`);
-  } else {
-    response = await axiosInstance.get(`${url}/api/openai/fun-fact/${location}/${country}`);
-    console.log("Fetch fun fact: Test mode OFF!");
-  }
-  return response.data
+  const subpath = (testMode)
+    ? `/api/openai/test-fact/${location}/${country}`
+    : `/api/openai/fun-fact/${location}/${country}`;
+
+  !testMode && console.log("Fetch fun fact: Test mode OFF!");
+
+  return axiosInstance.get(url + subpath)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+      return {
+        message: "Could not fetch fun fact!"
+      };
+    });
 }
