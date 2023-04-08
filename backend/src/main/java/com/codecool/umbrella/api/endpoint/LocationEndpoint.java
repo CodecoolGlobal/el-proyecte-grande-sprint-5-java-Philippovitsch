@@ -6,7 +6,6 @@ import com.codecool.umbrella.logic.LocationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(originPatterns = {"*"}, maxAge = 3600, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/location")
 public class LocationEndpoint {
