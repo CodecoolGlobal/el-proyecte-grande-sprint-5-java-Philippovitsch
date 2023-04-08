@@ -6,6 +6,12 @@ export default function RoleManagementModal({ closeModal, userToEditRole, oldRol
 
   const [newRole, setNewRole] = useState(oldRole);
 
+  document.onkeydown = (event) => {
+    if (event.code === "Escape") {
+      closeModal();
+    }
+  };
+
   return (
     <div className="modal" onClick={closeModal}>
       <div  className="modal-content" 
@@ -13,6 +19,7 @@ export default function RoleManagementModal({ closeModal, userToEditRole, oldRol
         onClick={(event) => { event.stopPropagation() }} 
         style={{ cursor: 'default' }}
       >
+        <span className="close" onClick={closeModal}>&times;</span>
         <Typography gutterBottom variant="h4" component="div" sx={{ mt: 4, textAlign: "center" }}>
           Role Management
         </Typography>
