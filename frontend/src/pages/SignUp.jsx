@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Alert, Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 
@@ -10,6 +11,8 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [severity, setSeverity] = useState("info");
   const [signUpMessage, setSignUpMessage] = useState(null);
+
+  const navigate = useNavigate();
 
   const changeUsername = (event) => {
     setUsername(event.target.value);
@@ -37,6 +40,14 @@ export default function SignUp() {
     return roles;
   };
 
+  const redirectUser = () => {
+    setTimeout(() => {
+      if (window.location.pathname === "/SignUp") {
+        navigate("/LogIn")
+      }
+    }, 2000)
+  }
+
   const performSignUp = async () => {
     const userData = {
       username: username,
@@ -49,6 +60,7 @@ export default function SignUp() {
     if (response.status === 200) {
       setSeverity("success");
       setSignUpMessage("User successfully created!")
+      redirectUser();
     } else {
       setSeverity("error");
       setSignUpMessage(`${response.error}: ${response.message}`);
