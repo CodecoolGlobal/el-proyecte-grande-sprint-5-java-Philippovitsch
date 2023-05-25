@@ -91,14 +91,15 @@ npm install && npm start
 ## Screenshots
 
 Landing page:
-![1-landing](https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/assets/16825493/09ea3aa0-8b07-493a-b623-a1cd5ba23cd7)
+![1-landing](https://raw.githubusercontent.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/development/screenshots/1-landing.jpg)
 
 Weather cards:
-![2-weather-cards](https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/assets/16825493/2323d7f6-ad58-4e95-9526-b53fbb746992)
+![2-weather-cards](https://raw.githubusercontent.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/development/screenshots/2-weather-cards.jpg)
 
 Location details:
-![3-location-details](https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/assets/16825493/8320f29d-a7a9-4e3f-bdb9-debf2dc1d97c)
+![3-location-details](https://raw.githubusercontent.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/development/screenshots/3-location-details.jpg)
 
-![4-events](https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/assets/16825493/661fde04-cd81-4170-a591-0d888372e9f8)
+Events:
+![4-events](https://raw.githubusercontent.com/CodecoolGlobal/el-proyecte-grande-sprint-5-java-Philippovitsch/development/screenshots/4-events.jpg)
 
 More screenshots are available in the `screenshots` folder...
